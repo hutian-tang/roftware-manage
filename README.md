@@ -8,3 +8,5 @@
 
 1. 更正拼写错误：`machine`表中的`NUMBER_VAILD`字段改为`NUMBER_VALID`
 2. 增加新字段：`machine`表增加`NUMBER_TOTAL`字段，类型同`NUMBER_VALID`字段 
+
+哈哈哈
