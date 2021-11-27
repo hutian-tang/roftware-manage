@@ -1,8 +1,12 @@
 package com.njust.roftwaremanage.LabManagement.controller;
 
+import com.njust.roftwaremanage.LabManagement.service.StudentService;
+import com.njust.roftwaremanage.LabManagement.tools.Message;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 
 /**
  * 学生选课的servlet
@@ -21,6 +25,11 @@ public class ViewExperimentDetail extends HttpServlet {
      *                      注意：学生不能选择同名的2个实验，当学生已经选择一个实验时，其它实验的状态均为-3
      * */
     public void doGet(HttpServletRequest request, HttpServletResponse response){
-
+        String experimentName = request.getParameter("name");
+        String studentId = request.getParameter("id");
+        StudentService studentService = new StudentService();
+        HashMap<String, Message> arrangeDetails = studentService.getArrangeDetails(studentId,experimentName);
+        request.setAttribute("arrangeDetails",arrangeDetails);
+        //TODO:传出每个实验对应的已选人数、教师对象
     }
 }

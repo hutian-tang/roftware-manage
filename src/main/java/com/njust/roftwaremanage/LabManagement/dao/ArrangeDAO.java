@@ -18,6 +18,16 @@ public class ArrangeDAO {
     }
 
     /**
+     * 根据name返回对应的实验
+     * 输入:name
+     * 输出:name对应的List<Arrange>
+     * */
+    public static List<Arrange> findArrangeByName(String name){
+        //TODO:
+        return null;
+    }
+
+    /**
      * 访问数据库，获取所有实验的名字（消除重复）
      * 输出：List<String>
      * */
