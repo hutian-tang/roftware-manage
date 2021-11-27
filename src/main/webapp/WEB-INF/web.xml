@@ -11,4 +11,20 @@
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ViewExperiment</servlet-name>
+        <servlet-class>com.njust.roftwaremanage.LabManagement.controller.ViewExperiment</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewExperiment</servlet-name>
+        <url-pattern>/StudentHome</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ViewExperimentDetail</servlet-name>
+        <servlet-class>com.njust.roftwaremanage.LabManagement.controller.ViewExperimentDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewExperimentDetail</servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping>
 </web-app>
