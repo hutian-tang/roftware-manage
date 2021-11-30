@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>账户管理</title>
+    <!-- 引入 layui.css -->
+    <link href="../layui-v2.6.8/layui/css/layui.css" rel="stylesheet">
+
+    <!-- 引入 layui.js -->
+    <script src="../layui-v2.6.8/layui/layui.js"></script>
+    <!-- 引入 jquery.js -->
+    <script src="../js/jquery-3.4.1.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="layui-container">
+    <div class="layui-row " style="height:30px;"></div>
+</div>
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-md12" style="height: 800px;">
+            <div class="layui-card" style="height: 700px;">
+                <div class="layui-card-header" style=" height: 50px;">
+                    <div class="layui-col-md12">
+                        <div class="layui-col-md1"><p style="font-size: 20px">账户管理</p></div>
+                        <div class="layui-col-md3">
+                            <i class="layui-icon layui-icon-user" style="font-size: 25px; color: #1E9FFF;"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-card-body">
+                    <table id="test" lay-filter="test"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="toolbarDemo" type="text/html">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add">添加用户</button>
+    </div>
+</script>
+
+<script id="barDemo" type="text/html">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script>
+    layui.use('table', function () {
+        var table = layui.table;
+
+        table.render({
+            elem: '#test'
+            , height: 312
+            , url: '/admin-api/get-user-list' //数据接口
+            , page: true //开启分页
+            , defaultToolbar: ['filter', 'exports', 'print'] //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+            , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , cols: [[//表头
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'id', title: '用户ID', width: 120, fixed: 'left'}
+                ,{field: 'username', title: '用户名', width: 120}
+                , {field: 'nickname', title: '昵称', width: 100}
+                , {field: 'phone', title: '手机号码', width: 120}
+                , {field: 'email', title: '邮箱', width: 120}
+                , {field: 'address', title: '地址', width: 120}
+                , {field: 'usertype', title: '用户类型', sort: true, width: 110}
+                , {field: '', title: '操作', toolbar: "#barDemo"}
+            ]]
+        });
+        //头工具栏事件
+        table.on('toolbar(test)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+                case 'add':
+                    layui.use("layer", function () {
+                        var layer = layui.layer;
+                        layer.open({
+                            type: 2,
+                            title: '用户信息',
+                            shadeClose: true,
+                            shade: false,
+                            maxmin: true, //开启最大化最小化按钮
+                            area: ['800px', '700px'],
+                            // fix content: '../register.html'
+                            content: '/user-info'
+                        });
+                    });
+                    break;
+            }
+            ;
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            //console.log(obj)
+            if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    $.post('/admin-api/del-user',{"username":data.username})
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                layui.use("layer", function () {
+                    var layer = layui.layer;
+                    layer.open({
+                        type: 2,
+                        title: '用户信息',
+                        shadeClose: true,
+                        shade: false,
+                        maxmin: true, //开启最大化最小化按钮
+                        area: ['800px', '700px'],
+                        // fix content: '../register.html'
+                        content: '/user-info?id=' + data.id
+                    });
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

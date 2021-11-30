@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>欢迎使用机房预约管理系统</title>
+		<!-- 引入 layui.css -->
+		<link rel="stylesheet" href="./layui-v2.6.8/layui/css/layui.css">
+		 
+		<!-- 引入 layui.js -->
+		<script src="./layui-v2.6.8/layui/layui.js"></script>
+	</head>
+	
+<body>
+		<ul class="layui-nav" lay-filter="" style="background-color: #411445;">
+			<li class="layui-nav-item"><a href=""><img src="img/logo-mini.png" height="45px" width="200px"></a></li>
+			<li class="layui-nav-item layui-this"><a href="index.html"><i class="layui-icon layui-icon-home" style="font-size:10px"></i> 首页</a></li>
+			<li class="layui-nav-item"><a href="">关于我们</a></li>
+			<li class="layui-nav-item"><a href="">帮助信息</a></li>
+			<li class="layui-nav-item ">
+			<a href="javascript:">友情链接</a>
+				<dl class="layui-nav-child"> <!-- 二级菜单 -->
+				<dd><a href="http://www.njust.edu.cn/">学校官网</a></dd>
+				<dd><a href="https://jwc.njust.edu.cn/">教务处</a></dd>
+				<dd><a href="http://ehall.njust.edu.cn">智慧理工服务门户</a></dd>
+				<dd><a href="https://www.baidu.com/">百度</a></dd>
+				</dl>
+			</li>
+			<li class="layui-nav-item"><a href="">反馈问题</a></li>
+		</ul>
+
+<div class="layui-fluid" style="background-image:url(img/loginback.jpg) ;height: 820px;">
+
+	<div class="layui-row " style="height:200px;">
+
+	</div>
+	<div class="layui-row" style="height:300px ;">
+		<div class="layui-col-md1" style="height:200px;"></div>
+		<div class="layui-col-md4"style="height: 170px;" >
+			<div class="layui-row " style="height:170px;">
+			<div class="layui-col-md12" style="height: 60px;">
+			</div>
+			<div class="layui-col-md12" style="height: 60px;">
+				<img src="img/njust-head.png" height="60px" width="360px">
+			</div>
+			<div class="layui-col-md12" style="height: 20px;">
+			</div>
+			<div class="layui-col-md4" style="height: 60px;">
+			</div>
+			<div class="layui-col-md8" style="height: 60px;">
+				<img src="img/njust-title.png" height="60px" width="360px">
+			</div>
+			</div>
+		</div>
+		<div class="layui-col-md2" style="height: 100px;" ></div>
+		<div class="layui-col-md4" >
+			    <div class="layui-card" style="height: 330px;">
+					<div class="layui-card-header" style="font-size: 18px ;height: 40px;">用户登录</div>
+			        <div class="layui-card-body">
+					  <div style="height: 25px;"></div>
+					  <form class="layui-form" action="/doLogin" method="post">
+					    <div class="layui-form-item">
+					      <label class="layui-form-label"><i class="layui-icon layui-icon-username" style="font-size:25px;"></i></label>
+					      <div class="layui-input-inline">
+					        <input type="text" name="username" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+					      </div>
+					    </div>
+					    <div class="layui-form-item">
+					      <label class="layui-form-label"><i class="layui-icon layui-icon-password" style="font-size:25px;"></i></label>
+					      <div class="layui-input-inline">
+					        <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+					      </div>
+					    </div>
+						 <div class="layui-form-item">
+						    <label class="layui-form-label">身份</label>
+						    <div class="layui-input-block">
+						      <input type="radio" name="type" value="student" title="学生" checked="">
+						      <input type="radio" name="type" value="teacher" title="教师">
+						      <input type="radio" name="type" value="admin" title="管理员">
+						    </div>
+						  </div>
+					    <div class="layui-form-item">
+					      <div class="layui-input-block">
+					        <button class="layui-btn" lay-submit lay-filter="formDemo"style="background-color: #6950a1;" >立即登录</button>
+					        <button type="reset" onclick="showRegister()" class="layui-btn layui-btn-primary" lay-event="register">注册</button>
+					      </div>
+					    </div>
+					  </form>
+				      </div>
+					</div>   
+				</div>
+	</div>
+		
+</div>
+<div class="layui-container">
+	<div class="layui-row " style="height:50px;"></div>
+</div>
+
+ 
+<script>
+//注意：导航 依赖 element 模块，否则无法进行功能性操作
+layui.use('element', function(){
+  var element = layui.element;
+});
+</script>
+
+<script type="text/javascript">
+function showRegister(){
+	layui.use("layer",function(){
+		var layer=layui.layer;
+		layer.open({
+			type: 2,
+			title: '用户注册',
+			shadeClose: true,
+			shade: false,
+			maxmin: true, //开启最大化最小化按钮
+			area: ['800px', '700px'],
+			content: 'register.html'
+		});
+	});
+}
+</script>
+	</body>
+</html>
