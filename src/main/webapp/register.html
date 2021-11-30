@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>注册页面</title>
+		<!-- 引入 layui.css -->
+		<link rel="stylesheet" href="./layui-v2.6.8/layui/css/layui.css">
+		 
+		<!-- 引入 layui.js -->
+		<script src="./layui-v2.6.8/layui/layui.js"></script>
+	</head>
+	<body>
+		<div class="layui-container">
+			<div class="layui-row " style="height:40px;"></div>
+		</div>
+	<div class="layui-container">
+		<div class="layui-col-md-offset2 layui-col-md5">
+			<form class="layui-form" action="/doReg" method="post">
+			  <div class="layui-form-item">
+			    <label class="layui-form-label">用户名</label>
+			    <div class="layui-input-block">
+			      <input type="username" name="username" required  lay-verify="required" placeholder="请输入用户ID，不少于8位" autocomplete="off" class="layui-input">
+			    </div>
+			  </div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">昵称</label>
+					<div class="layui-input-block">
+						<input type="nickname" name="nickname" required  lay-verify="required" placeholder="请输入用户昵称" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			  <div class="layui-form-item">
+			    <label class="layui-form-label">密码</label>
+			    <div class="layui-input-block">
+			      <input type="password" name="password" required lay-verify="required" placeholder="请输入密码，不少于8位" autocomplete="off" class="layui-input">
+			    </div>
+			  </div>
+			  <div class="layui-form-item">
+			    <label class="layui-form-label">确认密码</label>
+			    <div class="layui-input-block">
+			      <input type="password" required lay-verify="required" placeholder="请重复输入密码" autocomplete="off" class="layui-input">
+			    </div>
+			  </div>
+			  <div class="layui-form-item">
+			    <label class="layui-form-label">真实姓名</label>
+			    <div class="layui-input-block">
+			      <input type="rname" name="real_name" required lay-verify="required" placeholder="请输入真实姓名" autocomplete="off" class="layui-input">
+			    </div>
+			  </div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">身份证号</label>
+					<div class="layui-input-block">
+						<input type="rID" name="id_card" required lay-verify="required" placeholder="请输入身份证号" autocomplete="off" class="layui-input">
+					</div>
+				</div>	
+				<div class="layui-form-item">
+					<label class="layui-form-label">电话号码</label>
+					<div class="layui-input-block">
+						<input type="phone" name="phone" required lay-verify="required" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">邮箱</label>
+					<div class="layui-input-block">
+						<input type="mail" name="email" required lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			  <div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <input type="submit" class="layui-btn"  lay-filter="formDemo">立即提交</input>
+			      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			    </div>
+			  </div>
+			</form>
+		</div>
+	</div>
+<script>
+	form.verify({
+		confirmPass:function (value){
+			if($('input[name=password]').val()!==value)
+				return'两次密码输入不一致!';
+		}
+	});
+</script>
+	</body>
+</html>
