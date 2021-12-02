@@ -17,4 +17,16 @@ public class ArrangeService {
         names = ArrangeDAO.getArrangeNames();
         return null;
     }
+
+    /**
+     * 根据实验名字查找实验列表
+     * 输入:实验名字(String)
+     * 输出:实验对象(List<Arrange>)
+     */
+    public static List<Arrange> getArrangesByName(String name){
+        List<Arrange> arrangeList = new ArrayList<>();
+        arrangeList = ArrangeDAO.findArrangeByName(name);
+        return arrangeList;
+    }
+
 }

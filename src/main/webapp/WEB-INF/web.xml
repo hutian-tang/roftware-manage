@@ -16,7 +16,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ViewExperiment</servlet-name>
-        <servlet-class>com.njust.roftwaremanage.LabManagement.controller.ViewExperiment</servlet-class>
+        <servlet-class>com.njust.roftwaremanage.LabManagement.controller.StudentViewExperiment</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ViewExperiment</servlet-name>
@@ -24,7 +24,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ViewExperimentDetail</servlet-name>
-        <servlet-class>com.njust.roftwaremanage.LabManagement.controller.ViewExperimentDetail</servlet-class>
+        <servlet-class>com.njust.roftwaremanage.LabManagement.controller.StudentViewExperimentDetail</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ViewExperimentDetail</servlet-name>

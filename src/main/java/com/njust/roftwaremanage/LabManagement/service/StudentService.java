@@ -21,7 +21,7 @@ public class StudentService {
      *      失败：null
      * */
     public static Student login(String id,String password){
-        Student student = studentDAO.findById(id);
+        Student student = studentDAO.findStudentById(id);
         if(student != null){
             if(!password.equals(student.getPassword())){
                 return null;
@@ -108,7 +108,12 @@ public class StudentService {
             if (arrangeList != null) {
                 for(Arrange a:arrangeList){
                     //TODO:判断是否已过实验开始时间
-                    //TODO:判断是否实验人数已满
+
+                    //判断是否实验人数已满
+                    if(a.getNumber_selected() >= a.getNumber_use()){
+                        Message message = new Message(-1,"人数已满",a);
+                        arrangeDetails.put(a.getArrange_id(),message);
+                    }
                 }
             }
         }

@@ -13,7 +13,7 @@ public class ManagerService {
      *      失败：null
      * */
     public static Manager login(String id,String password){
-        Manager manager = managerDAO.findById(id);
+        Manager manager = managerDAO.findManagerById(id);
         if(manager != null){
             if(!password.equals(manager.getPassword()))
                 return null;
