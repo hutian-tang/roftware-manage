@@ -9,7 +9,7 @@ public class ManagerDAO {
      * 输入：管理员id
      * 输出：管理员对象，未找到则为null
      * */
-    public Manager findById(String id){
+    public Manager findManagerById(String id){
         //TODO:
         return null;
     }

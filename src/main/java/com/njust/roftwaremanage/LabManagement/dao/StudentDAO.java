@@ -9,7 +9,7 @@ public class StudentDAO {
      * 输入：学生id
      * 输出：学生对象，未找到则为null
      * */
-    public Student findById(String id){
+    public Student findStudentById(String id){
         Student stu = null;
         //TODO:
         return stu;

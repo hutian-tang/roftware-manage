@@ -10,6 +10,7 @@ public class Arrange {
     private String address;        //房间号
     private String teacher_id;     //所属教师id
     private int number_use;        //使用机器数（开放性实验不填）
+    private int number_selected;   //已选人数
     private boolean isShared;      //是否共享，true为可共享
     private String type;           //实验类型
 
@@ -26,6 +27,28 @@ public class Arrange {
         this.number_use = number_use;
         this.isShared = isShared;
         this.type = type;
+        number_selected = number_use;
+    }
+
+    public Arrange(String arrange_id, Date startTime, Date endTime, String name_exp, String address, String teacher_id, int number_use, int number_selected, boolean isShared, String type) {
+        this.arrange_id = arrange_id;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.name_exp = name_exp;
+        this.address = address;
+        this.teacher_id = teacher_id;
+        this.number_use = number_use;
+        this.number_selected = number_selected;
+        this.isShared = isShared;
+        this.type = type;
+    }
+
+    public int getNumber_selected() {
+        return number_selected;
+    }
+
+    public void setNumber_selected(int number_selected) {
+        this.number_selected = number_selected;
     }
 
     public String getArrange_id() {
