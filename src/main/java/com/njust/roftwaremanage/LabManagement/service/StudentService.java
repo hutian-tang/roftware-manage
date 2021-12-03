@@ -119,4 +119,17 @@ public class StudentService {
         }
         return arrangeDetails;
     }
+
+    /**
+     * 学生选课
+     * 传入参数：学生id(String),实验id(String)
+     * 传出参数：Message对象
+     *          code属性：
+     *          mag属性：
+     *          data属性：
+     * */
+     public Message selectExperiment(String studentId,String arrangeId){
+         Message message = new Message();
+         return message;
+     }
 }
