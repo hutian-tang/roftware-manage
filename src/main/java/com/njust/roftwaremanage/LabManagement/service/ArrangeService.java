@@ -29,4 +29,12 @@ public class ArrangeService {
         return arrangeList;
     }
 
+    /**
+     * 根据实验名字查找实验
+     * 输入:实验id(String)
+     * 输出:实验对象(Arrange)
+     */
+    public static Arrange getArrangesById(String id){
+        return ArrangeDAO.findArrangeById(id);
+    }
 }

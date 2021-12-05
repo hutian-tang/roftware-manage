@@ -25,4 +25,14 @@ public class TableDAO {
         //TODO:通过学生id和实验id找到对应的Table
         return null;
     }
+
+    /**
+     * 根据学生座位号和实验id返回对应的排课信息
+     * 输入:tableId,arrangeId
+     * 输出:Table
+     * */
+    public static Table findTableByTableIdAndArrangeId(String tableId,String arrangeId){
+        //TODO:通过学生座位号和实验id找到对应的Table
+        return null;
+    }
 }

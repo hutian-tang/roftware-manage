@@ -23,6 +23,6 @@ public class StudentSelectExperiment extends HttpServlet {
         String studentId = request.getParameter("studentId");
         String arrangeId = request.getParameter("arrangeId");
         //学生选课
-
+        
     }
 }
