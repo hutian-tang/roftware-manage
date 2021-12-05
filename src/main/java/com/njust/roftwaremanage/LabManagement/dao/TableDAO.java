@@ -35,4 +35,14 @@ public class TableDAO {
         //TODO:通过学生座位号和实验id找到对应的Table
         return null;
     }
+
+    /**
+     * 将学生实验的座位信息写入数据库
+     * 输入:Table
+     * 注意:Table_id由数据库生成
+     */
+    public static void InsertTable(Table table){
+        //TODO:生成tableId
+        //TODO:写入数据库
+    }
 }
