@@ -28,6 +28,8 @@ public class TableService {
                     t.setCondition("正常");
                     t.setArrange_id(arrangeId);
                     t.setStudent_id(studentId);
+                    //将学生的座位信息写入数据库
+                    TableDAO.InsertTable(t);
                     return t;
                 }
             }

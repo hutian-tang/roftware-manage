@@ -147,6 +147,7 @@ public class StudentService {
          TableService tableService = new TableService();
          Table table = tableService.assignSeats(studentId,arrangeId,arrange.getAddress(),arrange.getNumber_selected());
          if(table == null){
+             //理论上不应该存在的错误
              message.setCode(-3);
              message.setMsg("未知错误，请联系系统维护人员");
          }
