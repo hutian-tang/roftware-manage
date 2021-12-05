@@ -124,12 +124,35 @@ public class StudentService {
      * 学生选课
      * 传入参数：学生id(String),实验id(String)
      * 传出参数：Message对象
-     *          code属性：
-     *          mag属性：
-     *          data属性：
+     *          code属性：0为成功，-1为人数已满，-2为已过时间，-3为系统错误
+     *          mag属性：存储了code对应的具体错误信息
+     *          data属性：Table(选课错误时为null)
      * */
+    //FIXME:未经测试
      public Message selectExperiment(String studentId,String arrangeId){
          Message message = new Message();
+         //根据实验id查找实验
+         Arrange arrange = ArrangeService.getArrangesById(arrangeId);
+         /*判断是否满足选课条件*/
+         //TODO:判断是否已过实验时间
+         //判断是否已经满人
+         if(arrange.getNumber_selected() >= arrange.getNumber_use()){
+             message.setCode(-1);
+             message.setMsg("人数已满");
+             return message;
+         }
+         //选择实验
+         arrange.setNumber_selected(arrange.getNumber_selected() + 1);  //选课人数+1
+         //分配座位
+         TableService tableService = new TableService();
+         Table table = tableService.assignSeats(studentId,arrangeId,arrange.getAddress(),arrange.getNumber_selected());
+         if(table == null){
+             message.setCode(-3);
+             message.setMsg("未知错误，请联系系统维护人员");
+         }
+         message.setCode(0);
+         message.setMsg("成功");
+         message.setData(table);
          return message;
      }
 }
