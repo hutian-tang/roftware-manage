@@ -1,5 +1,3 @@
-[TOC]
-
 # 软件项目管理——实验室排课系统
 
 ## 后端
@@ -10,8 +8,24 @@
 
 实体类依据需求规格说明书新建，可能存在不合理的地方，后期根据需要进行更改。**请将所有实体类与文档不相符的地方写在这里，以便后续文档的更改**↓：
 
-1. 更正拼写错误：`machine`表中的`NUMBER_VAILD`字段改为`NUMBER_VALID`
-2. 增加新字段：`machine`表增加`NUMBER_TOTAL`字段，类型同`NUMBER_VALID`字段 
+##### Classroom表
+
+1. 更正拼写错误：`NUMBER_VAILD`字段改为`NUMBER_VALID`
+2. 增加新字段：增加`NUMBER_TOTAL`字段，类型同`NUMBER_VALID`字段 
+
+##### Arrange表
+
+1. 删除：`startTime`字段，`endTime`字段
+2. 新增：`week`字段、`day`字段、`start`字段、`end`字段，分别对应周次、星期、开始节次、结束节次。类型为`INT`
+
+##### Mag表（新增）
+
+​	用于传递诸如机器保修信息、教师实验安排被管理员取消、学生选择的实验被教师取消等跨越用户的信息。在用户登录其首页时，查找该表获取系统消息。在用户阅读完消息后，删除对应的数据，避免重复提醒 。
+
+1. `id`字段，`VARCHAR`类型，消息的id号
+2. `message`字段，`VARCHAR`类型。用于存储具体的信息内容
+3. `type`字段，`VARCHAR`类型。用于指定消息的发送对象(`Student/Admin/Teacher`)
+4. `targetId`字段，`VARCHAR`类型。用于指定消息的发送对象的id
 
 #### 功能更改
 
