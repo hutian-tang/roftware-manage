@@ -31,7 +31,7 @@ public class TableDAO {
      * 输入:tableId,arrangeId
      * 输出:Table
      * */
-    public static Table findTableByTableIdAndArrangeId(String tableId,String arrangeId){
+    public static Table findTableByTableIdAndArrangeId(int tableId,String arrangeId){
         //TODO:通过学生座位号和实验id找到对应的Table
         return null;
     }

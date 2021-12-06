@@ -4,6 +4,7 @@ import com.njust.roftwaremanage.LabManagement.dao.ArrangeDAO;
 import com.njust.roftwaremanage.LabManagement.dao.StudentDAO;
 import com.njust.roftwaremanage.LabManagement.dao.TableDAO;
 import com.njust.roftwaremanage.LabManagement.entity.Arrange;
+import com.njust.roftwaremanage.LabManagement.entity.Classroom;
 import com.njust.roftwaremanage.LabManagement.entity.Student;
 import com.njust.roftwaremanage.LabManagement.entity.Table;
 import com.njust.roftwaremanage.LabManagement.tools.Message;
@@ -145,7 +146,8 @@ public class StudentService {
          arrange.setNumber_selected(arrange.getNumber_selected() + 1);  //选课人数+1
          //分配座位
          TableService tableService = new TableService();
-         Table table = tableService.assignSeats(studentId,arrangeId,arrange.getAddress(),arrange.getNumber_selected());
+         Classroom classroom = ClassroomService.findByAddress(arrange.getAddress());
+         Table table = tableService.assignSeats(studentId,arrangeId,classroom,arrange.getNumber_selected());
          if(table == null){
              //理论上不应该存在的错误
              message.setCode(-3);
