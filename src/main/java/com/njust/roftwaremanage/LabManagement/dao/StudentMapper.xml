@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.java.com.njust.roftwaremanage.LabManagement.dao.StudentMapper">
+    <!-- 添加Emp数据,parameterType -->
+    <select id="findstudentbyid" parameterType="String" resultType="main.java.com.njust.roftwaremanage.LabManagement.entity.Stduent">
+        select * from student where student_id=#{student_id}
+    </select>
+    
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.java.com.njust.roftwaremanage.LabManagement.dao.MachineMapper">
+    <!-- 添加Emp数据,parameterType -->
+    <select id="searchmachine" parameterType="main.java.com.njust.roftwaremanage.LabManagement.entity.Machine" resultType="main.java.com.njust.roftwaremanage.LabManagement.entity.Machine">
+        select * from machine where address=#{address} and machine_id=#{machine_id}
+    </select>
+    <select id="brokenmachine" resultType="main.java.com.njust.roftwaremanage.LabManagement.entity.Machine">
+        select * from machine where condition="损坏" 
+    </select>
+<update id="modifydish" parameterType="main.java.com.njust.roftwaremanage.LabManagement.entity.Machine">
+	update machine set addition=#{addition} where address=#{address} and machine_id=#{machine_id}
+</update>
+</mapper>

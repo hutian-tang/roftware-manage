@@ -1,7 +1,13 @@
 package com.njust.roftwaremanage.LabManagement.dao;
 
 import com.njust.roftwaremanage.LabManagement.entity.Machine;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MachineDAO {
@@ -11,17 +17,60 @@ public class MachineDAO {
      * 输出:Machine
      * */
     public static Machine getMachineByAddressAndId(String address,String machineId){
-        //TODO:
-        return null;
+        String resource = "mybatis-config.xml";
+        SqlSession sqlSession = null;
+        Machine machine = new Machine();
+        try {
+            InputStream is = Resources.getResourceAsStream(resource);
+            SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
+            sqlSession = factory.openSession();
+            Machine temp = new Machine(machineId,address,"");
+            machine=sqlSession.selectOne("main.java.com.njust.roftwaremanage.LabManagement.dao.MachineMapper.searchmachine", temp);
+
+            sqlSession.commit();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            if (sqlSession != null) {
+                sqlSession.rollback();
+            }
+        }
+        finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+        return machine;
     }
+
 
     /**
      * 获取所有损坏的机器
      * 输出:List<Machine>
      * */
     public static List<Machine> getBrokenMachines(){
-        //TODO:查找数据库中condition字段值为"损坏"的机器
-        return null;
+        List<Machine> machineList=new ArrayList<>();
+        String resource = "mybatis-config.xml";
+        SqlSession sqlSession = null;
+        try {
+            InputStream is = Resources.getResourceAsStream(resource);
+            SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
+            sqlSession = factory.openSession();
+            machineList=sqlSession.selectList("main.java.com.njust.roftwaremanage.LabManagement.dao.MachineMapper.brokenmachine");
+            sqlSession.commit();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            if (sqlSession != null) {
+                sqlSession.rollback();
+            }
+        }
+        finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+        return machineList;
     }
 
     /**
@@ -29,6 +78,27 @@ public class MachineDAO {
      * 输入:Machine(新的机器信息)
      * */
     public static void updateMachine(Machine machine){
-        //TODO:
+        String resource = "mybatis-config.xml";
+        SqlSession openSession=null;
+
+        try {
+            InputStream inputStream = Resources.getResourceAsStream(resource);
+            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+            openSession = sqlSessionFactory.openSession();
+            openSession.update("main.java.com.njust.roftwaremanage.LabManagement.dao.MachineMapper.updatemachine",machine);
+            openSession.commit();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            if (openSession != null) {
+                openSession.rollback();
+            }
+        }
+        finally {
+            if (openSession != null) {
+                openSession.close();
+            }
+        }
+
     }
 }
