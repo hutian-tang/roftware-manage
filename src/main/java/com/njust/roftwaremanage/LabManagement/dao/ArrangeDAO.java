@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +25,12 @@ public class ArrangeDAO {
         Arrange arrange = new Arrange();
         try {
             InputStream is = Resources.getResourceAsStream(resource);
+            if(is == null){
+                System.out.println("空");
+            }
             SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
             sqlSession = factory.openSession();
-            arrange=sqlSession.selectOne("main.java.com.njust.roftwaremanage.LabManagement.dao.ArrangeMapper.searcharrange", arrange_id);
+            arrange=sqlSession.selectOne("searcharrange", arrange_id);
 
             sqlSession.commit();
         }
@@ -57,7 +61,7 @@ public class ArrangeDAO {
             InputStream is = Resources.getResourceAsStream(resource);
             SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
             sqlSession = factory.openSession();
-            arrangeList=sqlSession.selectList("main.java.com.njust.roftwaremanage.LabManagement.dao.ArrangeMapper.findarrangebyname",name_exp);
+            arrangeList=sqlSession.selectList("findarrangebyname",name_exp);
             sqlSession.commit();
         }
         catch (Exception e) {
@@ -82,7 +86,7 @@ public class ArrangeDAO {
             InputStream is = Resources.getResourceAsStream(resource);
             SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
             sqlSession = factory.openSession();
-            arrangeList=sqlSession.selectList("main.java.com.njust.roftwaremanage.LabManagement.dao.ArrangeMapper.getexpname");
+            arrangeList=sqlSession.selectList("getexpname");
             sqlSession.commit();
         }
         catch (Exception e) {
@@ -93,5 +97,19 @@ public class ArrangeDAO {
             sqlSession.close();
         }
         return arrangeList;
+    }
+
+
+    public static void main(String args[]){
+        Arrange arrange = ArrangeDAO.findArrangeById("1");
+        System.out.println(arrange.getArrange_id());
+        List<Arrange> arrangeList = ArrangeDAO.findArrangeByName("测试实验");
+        for(Arrange a:arrangeList){
+            System.out.println(a.getArrange_id());
+        }
+        List<String> strings = ArrangeDAO.getArrangeNames();
+        for(String s:strings){
+            System.out.println(s);
+        }
     }
 }

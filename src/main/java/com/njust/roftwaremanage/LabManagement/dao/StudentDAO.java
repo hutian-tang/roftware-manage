@@ -16,7 +16,7 @@ public class StudentDAO {
      * 输出：学生对象，未找到则为null
      * */
     public Student findStudentById(String stduent_id){
-        String resource = "mybatis-config.xml";
+        String resource = "mybatis-config.bak";
         SqlSession sqlSession = null;
         Student student = null;
         try {

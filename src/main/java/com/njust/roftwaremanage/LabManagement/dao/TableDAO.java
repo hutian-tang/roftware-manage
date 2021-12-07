@@ -19,7 +19,7 @@ public class TableDAO {
      * */
     public static List<Table> findTableByStudentId(String student_id){
         List<Table> tableList=new ArrayList<>();
-        String resource = "mybatis-config.xml";
+        String resource = "mybatis-config.bak";
         SqlSession sqlSession = null;
         try {
             InputStream is = Resources.getResourceAsStream(resource);
@@ -48,7 +48,7 @@ public class TableDAO {
      * 输出:Table
      * */
     public static Table findTableByStudentIdAndArrangeId(String student_id,String arrange_id){
-        String resource = "mybatis-config.xml";
+        String resource = "mybatis-config.bak";
         SqlSession sqlSession = null;
         Table table = new Table();
         try {
@@ -82,7 +82,7 @@ public class TableDAO {
      * */
     public static Table findTableByTableIdAndArrangeId(int table_id,String arrange_id){
         //TODO:通过学生座位号和实验id找到对应的Table
-        String resource = "mybatis-config.xml";
+        String resource = "mybatis-config.bak";
         SqlSession sqlSession = null;
         Table table = new Table();
         try {
@@ -117,7 +117,7 @@ public class TableDAO {
     public static void InsertTable(Table table){
         //TODO:生成tableId
         //TODO:写入数据库
-        String resource = "mybatis-config.xml";
+        String resource = "mybatis-config.bak";
 
         SqlSession openSession=null;
         try {
