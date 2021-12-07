@@ -25,7 +25,7 @@ public class MachineDAO {
             SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
             sqlSession = factory.openSession();
             Machine temp = new Machine(machineId,address,"");
-            machine=sqlSession.selectOne("main.java.com.njust.roftwaremanage.LabManagement.dao.MachineMapper.searchmachine", temp);
+            machine=sqlSession.selectOne("searchmachine", temp);
 
             sqlSession.commit();
         }
@@ -56,7 +56,7 @@ public class MachineDAO {
             InputStream is = Resources.getResourceAsStream(resource);
             SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
             sqlSession = factory.openSession();
-            machineList=sqlSession.selectList("main.java.com.njust.roftwaremanage.LabManagement.dao.MachineMapper.brokenmachine");
+            machineList=sqlSession.selectList("brokenmachine");
             sqlSession.commit();
         }
         catch (Exception e) {
@@ -85,7 +85,7 @@ public class MachineDAO {
             InputStream inputStream = Resources.getResourceAsStream(resource);
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             openSession = sqlSessionFactory.openSession();
-            openSession.update("main.java.com.njust.roftwaremanage.LabManagement.dao.MachineMapper.updatemachine",machine);
+            openSession.update("updatemachine",machine);
             openSession.commit();
         }
         catch (Exception e) {

@@ -16,7 +16,7 @@ public class ManagerDAO {
      * 输出：管理员对象，未找到则为null
      * */
     public Manager findManagerById(String manager_id){
-        String resource = "mybatis-config.xml";
+        String resource = "mybatis-config.bak";
         SqlSession sqlSession = null;
         Manager manager = null;
         try {

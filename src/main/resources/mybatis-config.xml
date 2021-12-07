@@ -1,41 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
-PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-config.dtd">
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
 <configuration>
-	<properties resource="database.properties"></properties>
-	 <settings>
-        <!-- 配置mybatis的log实现为LOG4J 后台输出SQL语句-->
-        <setting name="logImpl" value="LOG4J"/>
-       
-    </settings>
-    <!-- default属性表示采用哪种配置 -->
+    <!-- 环境配置 -->
     <environments default="development">
-        <!-- 配置情况的一种,可以有多个,根据environments 的default来指定使用哪一种 -->
         <environment id="development">
-            <!-- 配置事务管理 采用JDBC -->
             <transactionManager type="JDBC"/>
-            <!-- POOLED：mybatis的数据源,JNDI：基于tomcat的数据源 -->
+            <!-- 数据库连接相关配置 ,这里动态获取config.properties文件中的内容-->
             <dataSource type="POOLED">
-                <!-- 数据库连接信息 -->
-                <property name="driver" value="${driver}" />
-                <property name="url" value="${url}" />
-                <property name="username" value="${username}" />
-                <property name="password" value="${password}" />
+                <property name="driver" value="com.mysql.cj.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://localhost:3306/takingorderssystem" />
+                <property name="username" value="root" />
+                <property name="password" value="root" />
             </dataSource>
         </environment>
     </environments>
-   
-    <mappers>        
-    <!-- 要用"/"而不是"." -->
-    <mapper resource="main.java.com.njust.roftwaremanage.LabManagement.dao.ArrangeMapper"/>
-    <mapper resource="main.java.com.njust.roftwaremanage.LabManagement.dao.MachineMapper"/>
-<mapper resource="main.java.com.njust.roftwaremanage.LabManagement.dao.ManagerMapper"/>
-<mapper resource="main.java.com.njust.roftwaremanage.LabManagement.dao.StudentMapper"/>
-<mapper resource="main.java.com.njust.roftwaremanage.LabManagement.dao.TableMapper"/>
-<mapper resource="main.java.com.njust.roftwaremanage.LabManagement.dao.TeacherMapper"/>
-  
-	</mappers>
-	
-	
+    <!-- mapping文件路径配置 -->
+    <mappers>
+        <mapper resource="mapper/ArrangeMapper.xml"/>
+        <mapper resource="mapper/MachineMapper.xml"/>
+        <mapper resource="mapper/ManagerMapper.xml"/>
+        <mapper resource="mapper/StudentMapper.xml"/>
+        <mapper resource="mapper/TeacherMapper.xml"/>
+    </mappers>
+
 </configuration>

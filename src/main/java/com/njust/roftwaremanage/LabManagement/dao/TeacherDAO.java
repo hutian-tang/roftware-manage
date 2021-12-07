@@ -17,7 +17,7 @@ public class TeacherDAO {
      * */
     public Teacher findTeacherById(String teacher_id){
         //TODO:
-        String resource = "mybatis-config.xml";
+        String resource = "mybatis-config.bak";
         SqlSession sqlSession = null;
         Teacher teacher = null;
         try {
