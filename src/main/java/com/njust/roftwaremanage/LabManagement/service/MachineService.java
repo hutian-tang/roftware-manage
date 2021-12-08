@@ -49,4 +49,13 @@ public class MachineService {
         }
         return false;
     }
+
+    /**
+     * 根据机器所在教室和机器id查找机器
+     * 输入:address,machineId
+     * 输出:Machine
+     * */
+    public static Machine findMachineByAddressAndId(String id,String address){
+        return MachineDAO.getMachineByAddressAndId(address,id);
+    }
 }
