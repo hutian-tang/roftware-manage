@@ -49,6 +49,20 @@ public class Arrange {
         this.type = type;
     }
 
+
+    public Arrange( int week, int day, int start, int end, String name_exp, String address, String teacher_id, int number_use, boolean isShared) {
+        this.week = week;
+        this.day = day;
+        this.start = start;
+        this.end = end;
+        this.name_exp = name_exp;
+        this.address = address;
+        this.teacher_id = teacher_id;
+        this.number_use = number_use;
+        this.isShared = isShared;
+
+        number_selected = 0;
+    }
     public String getArrange_id() {
         return arrange_id;
     }

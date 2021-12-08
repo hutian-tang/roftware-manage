@@ -49,4 +49,29 @@ public class MachineService {
         }
         return false;
     }
+
+    /**
+     * 根据机器所在教室和机器id查找机器
+     * 输入:address,machineId
+     * 输出:Machine
+     * */
+    public static Machine findMachineByAddressAndId(String id,String address){
+        return MachineDAO.getMachineByAddressAndId(address,id);
+    }
+
+    /**
+     * 机器保修
+     * 输入:Machine
+     * 输出:Boolean(True为报修成功)
+     * */
+    public Boolean machineFeedBack(Machine machine){
+        if(machine != null){
+            if(machine.getCondition().equals("正常")){
+                machine.setCondition("损坏");
+                MachineDAO.updateMachine(machine);
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -10,6 +10,8 @@ public class TableService {
      *  输入:StudentId(String),arrangeId(String),教室名classroom(String),当前已选人数(int)
      *  输出:Table
      * */
+    //FIXME:已知bug
+    //FIXME:当教室中存在开放性实验和普通实验时，座位分配将出现问题
     public Table assignSeats(String studentId, String arrangeId, Classroom classroom, int selectedNumber){
         //由于系统为顺序分配，为了提供效率，可以从当前已选人数开始分配位置
         int num = selectedNumber + 1;
@@ -30,6 +32,8 @@ public class TableService {
      *  输入:起始位置(int),结束位置(int),教室对象(Classroom),arrangeId(String)
      *  返回:int(应该给学生分配的位置)
      * */
+    //FIXME:已知bug
+    //FIXME:当教室中存在开放性实验和普通实验时，座位分配将出现问题
     public int assignSeats(int pos, int end, Classroom classroom, String arrangeId){
         boolean flag = false;       //是否成功分配座位
         while(!flag && pos <= end){      //避免超出范围
