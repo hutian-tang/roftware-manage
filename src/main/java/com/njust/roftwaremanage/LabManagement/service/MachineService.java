@@ -58,4 +58,20 @@ public class MachineService {
     public static Machine findMachineByAddressAndId(String id,String address){
         return MachineDAO.getMachineByAddressAndId(address,id);
     }
+
+    /**
+     * 机器保修
+     * 输入:Machine
+     * 输出:Boolean(True为报修成功)
+     * */
+    public Boolean machineFeedBack(Machine machine){
+        if(machine != null){
+            if(machine.getCondition().equals("正常")){
+                machine.setCondition("损坏");
+                MachineDAO.updateMachine(machine);
+                return true;
+            }
+        }
+        return false;
+    }
 }
