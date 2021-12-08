@@ -129,6 +129,8 @@ public class StudentService {
      *          mag属性：存储了code对应的具体错误信息
      *          data属性：Table(选课错误时为null)
      * */
+    //FIXME:已知bug
+    //FIXME:当教室中存在开放性实验和普通实验时，座位分配将出现问题
     //FIXME:未经测试
      public Message selectExperiment(String studentId,String arrangeId){
          Message message = new Message();
