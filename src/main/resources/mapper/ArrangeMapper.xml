@@ -4,7 +4,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.njust.roftwaremanage.LabManagement.dao.ArrangeMapper">
     <!-- 添加Emp数据,parameterType -->
-    <select id="searcharrange" parameterType="String" resultType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
+   
+<select id="searcharrange" parameterType="String" resultType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
         select * from arrange where arrange_id=#{arrange_id}
     </select>
     <select id="findarrangebyname" parameterType="String" resultType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
