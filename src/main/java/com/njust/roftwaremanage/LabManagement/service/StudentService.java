@@ -16,6 +16,15 @@ public class StudentService {
     private final static StudentDAO studentDAO = new StudentDAO();
 
     /**
+     * 修改密码
+     * 输入:student,新密码password(String)
+     * */
+    public static void changePassword(Student student,String password){
+        student.setPassword(password);
+        StudentDAO.updateStudent(student);
+    }
+
+    /**
      * 用户登录
      * 输入：id,password
      * 输出: 成功：Student对象

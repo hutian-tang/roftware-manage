@@ -13,6 +13,13 @@ import java.util.Map;
 
 public class ArrangeDAO {
 
+    /**
+     * 更新数据库中的arrange
+     * 输入:arrange对象
+     * */
+    public static void updateArrange(Arrange arrange){
+        //TODO:
+    }
 
     /**
      * 根据id返回对应的实验

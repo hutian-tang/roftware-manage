@@ -1,11 +1,21 @@
 package com.njust.roftwaremanage.LabManagement.service;
 
 import com.njust.roftwaremanage.LabManagement.dao.TeacherDAO;
+import com.njust.roftwaremanage.LabManagement.entity.Student;
 import com.njust.roftwaremanage.LabManagement.entity.Teacher;
 
 
 public class TeacherService {
     private final static TeacherDAO teacherDAO = new TeacherDAO();
+
+    /**
+     * 修改密码
+     * 输入:teacher,新密码password(String)
+     * */
+    public static void changePassword(Teacher teacher, String password){
+        teacher.setPassword(password);
+        TeacherDAO.updateTeacher(teacher);
+    }
 
     /**
      * 用户登录

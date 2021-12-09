@@ -1,8 +1,12 @@
 package com.njust.roftwaremanage.LabManagement.service;
 
+import com.njust.roftwaremanage.LabManagement.dao.ArrangeDAO;
 import com.njust.roftwaremanage.LabManagement.dao.TableDAO;
+import com.njust.roftwaremanage.LabManagement.entity.Arrange;
 import com.njust.roftwaremanage.LabManagement.entity.Classroom;
 import com.njust.roftwaremanage.LabManagement.entity.Table;
+
+import java.util.List;
 
 public class TableService {
 
@@ -51,5 +55,35 @@ public class TableService {
             pos++;
         }
         return -1;
+    }
+
+    /** 根据学生id找到学生的实验安排
+     *  输入:studentId(String)
+     *  返回:List<Table>
+     * */
+    public static List<Table> findTableByStudentId(String studentId){
+        return TableDAO.findTableByStudentId(studentId);
+    }
+
+    /**
+     * 根据学生id和实验id找到座位
+     * 输入:studentId,arrangeId
+     * 输出:Table对象
+     * */
+    public static Table findTableByStudentIdAndArrangeId(String studentId,String arrangeId){
+        return TableDAO.findTableByStudentIdAndArrangeId(studentId, arrangeId);
+    }
+
+    /**
+     * 删除座位信息
+     * 输入:Table
+     * */
+    public static void cancelTable(Table table){
+        TableDAO.dropTable(table.getTable_id(), table.getArrange_id());
+        //同时更改对应的arrange中的已选人数信息
+        Arrange arrange = ArrangeService.getArrangesById(table.getArrange_id());
+        arrange.setNumber_selected(arrange.getNumber_selected() - 1);
+        //更新arrange
+        ArrangeDAO.updateArrange(arrange);
     }
 }

@@ -20,6 +20,14 @@ public class StudentDAO {
     }
 
     /**
+     * 更新信息
+     * 输入:student
+     * */
+    public static void updateStudent(Student student){
+        //TODO:更新数据库
+    }
+
+    /**
      * 根据学生id查找数据库中的学生
      * 输入：学生id
      * 输出：学生对象，未找到则为null
