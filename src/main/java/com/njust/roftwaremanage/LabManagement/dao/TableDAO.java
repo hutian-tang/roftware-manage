@@ -13,6 +13,14 @@ import java.util.List;
 public class TableDAO {
 
     /**
+     * 根据tableId和arrangeId删除对应的table
+     * 输入:tableId,arrangeId
+     */
+    public static void dropTable(int tableId,String arrangeId){
+        //todo:删除table
+    }
+
+    /**
      * 根据学生id返回对应的排课信息
      * 输入:studentId
      * 输出:id对应的List<Table>
@@ -130,7 +138,6 @@ public class TableDAO {
                 openSession.close();
             }
         }
-
     }
 
     public static void main(String[] args) {
