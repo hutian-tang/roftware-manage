@@ -4,6 +4,8 @@ import com.njust.roftwaremanage.LabManagement.dao.TableDAO;
 import com.njust.roftwaremanage.LabManagement.entity.Classroom;
 import com.njust.roftwaremanage.LabManagement.entity.Table;
 
+import java.util.List;
+
 public class TableService {
 
     /** 为学生分配选课时的座位
@@ -51,5 +53,13 @@ public class TableService {
             pos++;
         }
         return -1;
+    }
+
+    /** 根据学生id找到学生的实验安排
+     *  输入:studentId(String)
+     *  返回:List<Table>
+     * */
+    public static List<Table> findTableByStudentId(String studentId){
+        return TableDAO.findTableByStudentId(studentId);
     }
 }
