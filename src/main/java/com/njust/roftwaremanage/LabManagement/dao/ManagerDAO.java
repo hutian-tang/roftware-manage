@@ -1,6 +1,7 @@
 package com.njust.roftwaremanage.LabManagement.dao;
 
 import com.njust.roftwaremanage.LabManagement.entity.Manager;
+import com.njust.roftwaremanage.LabManagement.entity.Student;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -17,6 +18,14 @@ public class ManagerDAO {
         Manager m2 = m.findManagerById("13");
         if (m2 != null) System.out.println(m2.getName());
 
+    }
+
+    /**
+     * 更新信息
+     * 输入:manager
+     * */
+    public static void updateManager(Manager manager){
+        //TODO:更新数据库
     }
 
     /**

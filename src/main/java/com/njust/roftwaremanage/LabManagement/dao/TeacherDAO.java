@@ -1,5 +1,6 @@
 package com.njust.roftwaremanage.LabManagement.dao;
 
+import com.njust.roftwaremanage.LabManagement.entity.Student;
 import com.njust.roftwaremanage.LabManagement.entity.Teacher;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -17,6 +18,14 @@ public class TeacherDAO {
         Teacher t2 = t.findTeacherById("33");
         System.out.println(t2.getDepartment());
 
+    }
+
+    /**
+     * 更新信息
+     * 输入:teacher
+     * */
+    public static void updateTeacher(Teacher teacher){
+        //TODO:更新数据库
     }
 
     /**
