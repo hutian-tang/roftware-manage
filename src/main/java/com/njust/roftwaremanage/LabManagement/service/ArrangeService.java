@@ -15,7 +15,7 @@ public class ArrangeService {
     public static List<String> getArrangeNames(){
         List<String> names = new ArrayList<>();
         names = ArrangeDAO.getArrangeNames();
-        return null;
+        return names;
     }
 
     /**
