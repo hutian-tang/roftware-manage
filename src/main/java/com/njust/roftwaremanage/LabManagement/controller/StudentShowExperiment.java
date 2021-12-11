@@ -43,9 +43,11 @@ public class StudentShowExperiment extends HttpServlet {
                 message.setData(table);
                 message.setData2(arrange);
                 message.setData3(teacher);
+                messageList.add(message);
             }
         }
         //传递数据
+        System.out.println(messageList.size());
         request.setAttribute("message",messageList);
     }
 }
