@@ -38,4 +38,20 @@
         <servlet-name>StudentShowExp</servlet-name>
         <url-pattern>/showExp</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>StudentSelectExp</servlet-name>
+        <servlet-class>com.njust.roftwaremanage.LabManagement.controller.StudentSelectExperiment</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentSelectExp</servlet-name>
+        <url-pattern>/StudentTest/selectExp</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>StudentCancelExp</servlet-name>
+        <servlet-class>com.njust.roftwaremanage.LabManagement.controller.StudentCancelExperiment</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentCancelExp</servlet-name>
+        <url-pattern>/StudentTest/cancelExp</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -17,7 +17,28 @@ public class TableDAO {
      * 输入:tableId,arrangeId
      */
     public static void dropTable(int tableId,String arrangeId){
-        //todo:删除table
+        List<Table> tableList = new ArrayList<>();
+        String resource = "mybatis-config.xml";
+        SqlSession sqlSession = null;
+        try {
+            InputStream is = Resources.getResourceAsStream(resource);
+            SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
+            sqlSession = factory.openSession();
+            Table table = new Table();
+            table.setTable_id(tableId);
+            table.setArrange_id(arrangeId);
+            tableList = sqlSession.selectList("dropTable", table);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (sqlSession != null) {
+                sqlSession.rollback();
+            }
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
     }
 
     /**
@@ -121,12 +142,8 @@ public class TableDAO {
         try {
             InputStream inputStream = Resources.getResourceAsStream(resource);
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-
             openSession = sqlSessionFactory.openSession();
-
-
             openSession.insert("InsertTable", table);
-
             openSession.commit();
         } catch (Exception e) {
             e.printStackTrace();

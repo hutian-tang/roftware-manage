@@ -3,9 +3,12 @@ package com.njust.roftwaremanage.LabManagement.controller;
 import com.njust.roftwaremanage.LabManagement.service.StudentService;
 import com.njust.roftwaremanage.LabManagement.tools.Message;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * 响应学生选课的servlet
@@ -23,11 +26,19 @@ public class StudentSelectExperiment extends HttpServlet {
      *          data属性：Table(选课错误时为null)
      * */
     public void doPost(HttpServletRequest request,HttpServletResponse response){
+        System.out.println("执行");
         String studentId = request.getParameter("studentId");
         String arrangeId = request.getParameter("arrangeId");
         //学生选课
         StudentService studentService = new StudentService();
         Message message = studentService.selectExperiment(studentId,arrangeId);
-        request.setAttribute("message",message);
+        HttpSession session = request.getSession();
+        session.setAttribute("message2",message);
+        //TODO:前后端相连时注意更改此处
+        try {
+            response.sendRedirect("showExp.jsp?studentId="+studentId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

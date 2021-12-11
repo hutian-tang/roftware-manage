@@ -39,6 +39,8 @@
         <td>星期</td>
         <td>开始节次</td>
         <td>结束节次</td>
+        <td>总人数</td>
+        <td>余量</td>
         <td>操作</td>
     </tr>
     <%
@@ -58,7 +60,33 @@
         <td><%=arrange.getDay()%></td>
         <td><%=arrange.getStart()%></td>
         <td><%=arrange.getEnd()%></td>
+        <td><%=arrange.getNumber_use()%></td>
+        <td><%=arrange.getNumber_use() - arrange.getNumber_selected()%></td>
+        <%
+            if(m.getCode() == 1){
+        %>
+        <form method="post" action="selectExp">
+            <input type="hidden" id="studentId" name="studentId" value="<%=studentId%>">
+        <input type="hidden" id="arrangeId" name="arrangeId" value="<%=arrange.getArrange_id()%>"/>
+        <td><input type="submit" value="选择" formmethod="post"></td>
+        </form>
+        <%
+            }
+            else if(m.getCode() == 0){
+        %>
+        <form method="post" action="cancelExp">
+        <input type="hidden" id="studentId" name="studentId" value="<%=studentId%>">
+        <input type="hidden" id="arrangeId" name="arrangeId" value="<%=arrange.getArrange_id()%>"/>
+        <td><input type="submit" value="退选" formmethod="post"></td>
+        </form>
+        <%
+            }
+            else {
+        %>
         <td><%=m.getMsg()%></td>
+        <%
+            }
+        %>
     </tr>
     <%
 

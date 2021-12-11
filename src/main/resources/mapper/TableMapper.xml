@@ -16,5 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	insert into `table`(table_id,address,`condition`,arrange_id,student_id)
 	values(#{table_id},#{address},#{condition},#{arrange_id},#{student_id})
 	</insert>
-
+    <delete id="dropTable" parameterType="com.njust.roftwaremanage.LabManagement.entity.Table">
+        delete from `table` where table_id=#{table_id} and arrange_id=#{arrange_id}
+    </delete>
 </mapper>

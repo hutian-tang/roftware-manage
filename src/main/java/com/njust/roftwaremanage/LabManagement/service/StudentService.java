@@ -158,7 +158,6 @@ public class StudentService {
              return message;
          }
          //选择实验
-         arrange.setNumber_selected(arrange.getNumber_selected() + 1);  //选课人数+1
          //分配座位
          TableService tableService = new TableService();
          Classroom classroom = ClassroomService.findByAddress(arrange.getAddress());
@@ -167,7 +166,11 @@ public class StudentService {
              //理论上不应该存在的错误
              message.setCode(-3);
              message.setMsg("未知错误，请联系系统维护人员");
+             return message;
          }
+         TableDAO.InsertTable(table);
+         arrange.setNumber_selected(arrange.getNumber_selected() + 1);  //选课人数+1
+         ArrangeDAO.updateArrange(arrange);
          message.setCode(0);
          message.setMsg("成功");
          message.setData(table);

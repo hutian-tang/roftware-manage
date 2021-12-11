@@ -9,6 +9,7 @@ import com.njust.roftwaremanage.LabManagement.service.TableService;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * 响应学生退课的servlet
@@ -30,5 +31,10 @@ StudentCancelExperiment extends HttpServlet {
         Table table = TableService.findTableByStudentIdAndArrangeId(studentId,arrangeId);
         //删除预定的座位
         TableService.cancelTable(table);
+        try {
+            response.sendRedirect("showExp.jsp?studentId="+studentId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
