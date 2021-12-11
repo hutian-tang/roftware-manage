@@ -18,6 +18,7 @@
     Arrange arrange = new Arrange();
     Table table = new Table();
     Teacher teacher = new Teacher();
+    String studentId;
 %>
 
 <html>
@@ -26,7 +27,11 @@
     <jsp:include page="/showExp"/>
 </head>
 <body>
-<h1><%=request.getParameter("studentId")%>的待上课实验</h1>
+<%
+    studentId = request.getParameter("studentId");
+%>
+<h1><%=studentId%>的待上课实验</h1>
+<a href="showExp.jsp?studentId=<%=studentId%>">返回主页</a>
 <table>
     <tr>
         <td>实验名称</td>
