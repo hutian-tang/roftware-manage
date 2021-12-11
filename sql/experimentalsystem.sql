@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1
--- 生成日期： 2021-12-08 13:25:21
--- 服务器版本： 10.4.18-MariaDB
--- PHP 版本： 8.0.3
+-- 生成日期： 2021-12-11 07:10:45
+-- 服务器版本： 10.4.22-MariaDB
+-- PHP 版本： 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,6 +33,7 @@ CREATE TABLE `arrange` (
   `address` varchar(255) NOT NULL DEFAULT '',
   `teacher_id` varchar(255) DEFAULT NULL,
   `number_use` int(11) DEFAULT NULL,
+  `number_selected` int(11) NOT NULL DEFAULT 0,
   `isshared` tinyint(1) NOT NULL DEFAULT 0,
   `type` varchar(255) NOT NULL DEFAULT '',
   `week` int(11) NOT NULL DEFAULT 0,
@@ -45,11 +46,12 @@ CREATE TABLE `arrange` (
 -- 转存表中的数据 `arrange`
 --
 
-INSERT INTO `arrange` (`arrange_id`, `name_exp`, `address`, `teacher_id`, `number_use`, `isshared`, `type`, `week`, `day`, `start`, `end`) VALUES
-('1', '2', '3', '4', 5, 6, '7', 8, 9, 10, 11),
-('2', '3', '4', '5', 6, 7, '8', 9, 10, 11, 12),
-('3', 'hh', '5', '6', 7, 8, '9', 10, 11, 1, 1),
-('4', 'hh', '56564', '654', 64546, 1, '654', 65, 564456, 456, 465);
+INSERT INTO `arrange` (`arrange_id`, `name_exp`, `address`, `teacher_id`, `number_use`, `number_selected`, `isshared`, `type`, `week`, `day`, `start`, `end`) VALUES
+('1', '加法器实验', '1001', '1', 5, 1, 0, '普通实验', 17, 1, 3, 3),
+('2', '加法器实验', '1001', '1', 5, 0, 0, '普通实验', 17, 2, 1, 1),
+('3', '运算器实验', '1002', '1', 7, 0, 1, '普通实验', 18, 4, 3, 3),
+('4', '单周期CPU实验', '1002', '2', 7, 2, 0, '普通实验', 20, 4, 1, 2),
+('5', '计算机组成', '1002', '2', 5, 0, 1, '开放性实验', 19, 5, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -69,8 +71,8 @@ CREATE TABLE `classroom` (
 --
 
 INSERT INTO `classroom` (`address`, `manager_id`, `number_valid`, `number_total`) VALUES
-('ss', '10', 2, 3),
-('3', '4', 5, 6);
+('1001', '1', 5, 5),
+('1002', '1', 9, 10);
 
 -- --------------------------------------------------------
 
@@ -89,10 +91,21 @@ CREATE TABLE `machine` (
 --
 
 INSERT INTO `machine` (`machine_id`, `address`, `condition`) VALUES
-('1', '2', '正常'),
-('4', '3', '损坏'),
-('5', '6', '损坏'),
-('6', '77', '正常');
+('1', '1001', '正常'),
+('1', '1002', '正常'),
+('10', '1002', '正常'),
+('2', '1001', '正常'),
+('2', '1002', '正常'),
+('3', '1001', '正常'),
+('3', '1002', '正常'),
+('4', '1001', '正常'),
+('4', '1002', '正常'),
+('5', '1001', '正常'),
+('5', '1002', '正常'),
+('6', '1002', '损坏'),
+('7', '1002', '正常'),
+('8', '1002', '正常'),
+('9', '1002', '正常');
 
 -- --------------------------------------------------------
 
@@ -124,8 +137,7 @@ CREATE TABLE `manager` (
 --
 
 INSERT INTO `manager` (`manager_id`, `name`, `password`) VALUES
-('123', '1', '2'),
-('13', '2', '3');
+('1', 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -146,8 +158,15 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_id`, `name`, `class_id`, `department`, `password`) VALUES
-('1', '2', '3', '4', '5'),
-('2', '3', '4', '5', '6');
+('1', '919106840201', '软件工程1班', '计算机课程与工程学院', '123456'),
+('10', '919106840304', '智能科学与技术2班', '计算机科学与工程学院', '123456'),
+('11', '919106840303', '智能科学与技术1班', '计算机科学与工程学院', '123456'),
+('2', '919106840202', '软件工程1班', '计算机科学与工程学院', '123456'),
+('3', '919106840101', '计算机科学与技术1班', '计算机科学与工程学院', '123456'),
+('4', '919106840102', '计算机科学与技术2班', '计算机科学与工程学院', '123456'),
+('5', '919106840301', '智能科学与技术1班', '计算机科学与工程学院', '123456'),
+('6', '919106840302', '智能科学与技术2班', '计算机科学与工程学院', '123456'),
+('7', '919106840401', '网络安全班', '计算机科学与工程学院', '123456');
 
 -- --------------------------------------------------------
 
@@ -168,11 +187,9 @@ CREATE TABLE `table` (
 --
 
 INSERT INTO `table` (`table_id`, `address`, `condition`, `arrange_id`, `student_id`) VALUES
-(1, '6', '4', '3', '2'),
-(2, '5', '3', '1', '2'),
-(4, '4', '5', '6', '7'),
-(8, '2', 'g', 'd', 'g'),
-(9, '2', 'g', 'd', 'g');
+(1, '1001', '正常', '1', '1'),
+(1, '1002', '正常', '4', '2'),
+(2, '1002', '正常', '4', '1');
 
 -- --------------------------------------------------------
 
@@ -192,8 +209,8 @@ CREATE TABLE `teacher` (
 --
 
 INSERT INTO `teacher` (`teacher_id`, `name`, `department`, `password`) VALUES
-('1', '2', '3', '4'),
-('33', '3', 'dfsaf', '3');
+('1', '组原教师1', '计算机科学与工程学院', '123456'),
+('2', '实验室教师1', '计算机科学与工程学院', '123456');
 
 --
 -- 转储表的索引
@@ -206,10 +223,16 @@ ALTER TABLE `arrange`
   ADD PRIMARY KEY (`arrange_id`) USING BTREE;
 
 --
+-- 表的索引 `classroom`
+--
+ALTER TABLE `classroom`
+  ADD PRIMARY KEY (`address`);
+
+--
 -- 表的索引 `machine`
 --
 ALTER TABLE `machine`
-  ADD PRIMARY KEY (`machine_id`) USING BTREE;
+  ADD PRIMARY KEY (`machine_id`,`address`);
 
 --
 -- 表的索引 `mag`
