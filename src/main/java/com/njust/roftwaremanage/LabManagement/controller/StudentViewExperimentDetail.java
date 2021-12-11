@@ -50,6 +50,6 @@ public class StudentViewExperimentDetail extends HttpServlet {
             messageList.add(result);
         }
         //传出信息
-        request.setAttribute("ExperimentDetail",arrangeDetails);
+        request.setAttribute("ExperimentDetail",messageList);
     }
 }
