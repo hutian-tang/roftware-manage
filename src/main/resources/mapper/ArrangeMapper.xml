@@ -21,8 +21,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select * from arrange where week=#{week} and day=#{day}
     </select>
     <insert id="addarrange" parameterType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
-        insert into arrange(start,end,name_exp,address,teacher_id,number_use,isShared,week,day)
+        insert into arrange(start,end,name_exp,address,teacher_id,number_use,number_selected,isShared,week,day)
         values (#{start},#{end},#{name_exp},#{address},#{teacher_id},
-                #{number_use},#{isShared},#{week},#{day})
+                #{number_use},#{number_selected},#{isShared},#{week},#{day})
     </insert>
+    <update id="updateArrange" parameterType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
+        UPDATE arrange SET week=#{week},day=#{day},start=#{start},end=#{end},name_exp=#{name_exp},address=#{address},teacher_id=#{teacher_id},isShared=#{isShared},number_use=#{number_use},number_selected=#{number_selected} WHERE arrange_id=#{arrange_id}
+    </update>
 </mapper>

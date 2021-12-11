@@ -18,7 +18,26 @@ public class ArrangeDAO {
      * 输入:arrange对象
      * */
     public static void updateArrange(Arrange arrange){
-        //TODO:
+        String resource = "mybatis-config.xml";
+        SqlSession sqlSession = null;
+        try {
+            InputStream is = Resources.getResourceAsStream(resource);
+
+            SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
+            sqlSession = factory.openSession();
+            sqlSession.update("updateArrange",arrange);
+
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (sqlSession != null) {
+                sqlSession.rollback();
+            }
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
     }
 
     /**
