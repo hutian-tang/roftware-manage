@@ -20,7 +20,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ViewExperiment</servlet-name>
-        <url-pattern>/StudentHome</url-pattern>
+        <url-pattern>/viewExp</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>ViewExperimentDetail</servlet-name>

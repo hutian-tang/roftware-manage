@@ -20,4 +20,5 @@
 <h1><%=studentId%>的主页</h1>
 </body>
     <a href="showExp.jsp?studentId=<%=studentId%>">查看课表</a>
+    <a href="viewExp.jsp?studentId=<%=studentId%>">查看实验</a>
 </html>

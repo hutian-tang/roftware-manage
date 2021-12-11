@@ -53,9 +53,12 @@ public class StudentService {
         List<String> arrangeNames = ArrangeService.getArrangeNames();
         //初始化HashMap
         if (arrangeNames != null) {
+            System.out.println("实验列表大小:"+ arrangeNames.size());
             for(String s: arrangeNames){
                 names.put(s,false);
             }
+        }else{
+            System.out.println("获取列表为空");
         }
         //遍历选课信息，查看学生选了哪些实验
         List<Table> tableList = TableDAO.findTableByStudentId(id);
@@ -65,6 +68,7 @@ public class StudentService {
                 String arrangeId = t.getArrange_id();
                 Arrange arrange = ArrangeDAO.findArrangeById(arrangeId);
                 if (arrange != null) {
+                    System.out.println("实验名：" + arrange.getName_exp());
                     names.put(arrange.getName_exp(),true);
                 }
             }
