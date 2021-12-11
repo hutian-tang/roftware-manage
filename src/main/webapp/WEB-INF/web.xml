@@ -30,4 +30,12 @@
         <servlet-name>ViewExperimentDetail</servlet-name>
         <url-pattern></url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>StudentShowExp</servlet-name>
+        <servlet-class>com.njust.roftwaremanage.LabManagement.controller.StudentShowExperiment</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentShowExp</servlet-name>
+        <url-pattern>/studentHome</url-pattern>
+    </servlet-mapping>
 </web-app>
