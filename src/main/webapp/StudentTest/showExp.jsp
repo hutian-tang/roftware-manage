@@ -23,7 +23,7 @@
 <html>
 <head>
     <title>学生主页</title>
-    <jsp:include page="/studentHome"/>
+    <jsp:include page="/showExp"/>
 </head>
 <body>
 <h1><%=request.getParameter("studentId")%>的待上课实验</h1>

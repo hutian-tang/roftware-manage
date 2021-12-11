@@ -36,6 +36,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>StudentShowExp</servlet-name>
-        <url-pattern>/studentHome</url-pattern>
+        <url-pattern>/showExp</url-pattern>
     </servlet-mapping>
 </web-app>
