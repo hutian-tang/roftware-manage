@@ -28,7 +28,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ViewExperimentDetail</servlet-name>
-        <url-pattern></url-pattern>
+        <url-pattern>/expDetail</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>StudentShowExp</servlet-name>
