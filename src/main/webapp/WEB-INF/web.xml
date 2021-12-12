@@ -15,6 +15,14 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>TeacherArrangeExperiment</servlet-name>
+        <servlet-class>com.njust.roftwaremanage.LabManagement.controller.TeacherArrangeExperiment</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TeacherArrangeExperiment</servlet-name>
+        <url-pattern>/TeacherArrangeExperiment</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>ViewExperiment</servlet-name>
         <servlet-class>com.njust.roftwaremanage.LabManagement.controller.StudentViewExperiment</servlet-class>
     </servlet>
