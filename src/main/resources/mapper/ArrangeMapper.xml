@@ -10,7 +10,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="findarrangebyname" parameterType="String" resultType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
         select * from arrange where name_exp=#{name_exp}
     </select>
-<select id="getexpname" resultType="String">
+    <select id="findarrangebytime" parameterType="int" resultType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
+        select * from arrange where startime=#{startime} and endtime=#{endtime}
+    </select>
+    <select id="findarrangeAllinoneday" parameterType="int" resultType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
+        select * from arrange where week=#{week} and day=#{day}
+    </select>
+    <select id="getexpname" resultType="String">
         select distinct name_exp from arrange 
     </select>
+    <insert id="addarrange" parameterType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
+        insert into arrange(start,end,name_exp,address,teacher_id,number_use,isShared,week,day)
+        values (#{start},#{end},#{name_exp},#{address},#{teacher_id},
+                #{number_use},#{isShared},#{week},#{day})
+    </insert>
 </mapper>

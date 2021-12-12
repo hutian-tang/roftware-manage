@@ -19,8 +19,8 @@ public class Arrange {
     public Arrange() {
     }
 
-    public Arrange(String arrange_id, int week, int day, int start, int end, String name_exp, String address, String teacher_id, int number_use, boolean isShared, String type) {
-        this.arrange_id = arrange_id;
+    public Arrange( int week, int day, int start, int end, String name_exp, String address, String teacher_id, int number_use, boolean isShared) {
+
         this.week = week;
         this.day = day;
         this.start = start;
@@ -30,7 +30,7 @@ public class Arrange {
         this.teacher_id = teacher_id;
         this.number_use = number_use;
         this.isShared = isShared;
-        this.type = type;
+
         number_selected = 0;
     }
 
