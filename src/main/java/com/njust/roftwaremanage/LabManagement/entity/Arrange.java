@@ -19,7 +19,7 @@ public class Arrange {
     public Arrange() {
     }
 
-    public Arrange( int week, int day, int start, int end, String name_exp, String address, String teacher_id, int number_use, boolean isShared) {
+    public Arrange( int week, int day, int start, int end, String name_exp, String address, String teacher_id, int number_use, boolean isShared,String type) {
 
         this.week = week;
         this.day = day;
@@ -30,7 +30,7 @@ public class Arrange {
         this.teacher_id = teacher_id;
         this.number_use = number_use;
         this.isShared = isShared;
-
+        this.type = type;
         number_selected = 0;
     }
 

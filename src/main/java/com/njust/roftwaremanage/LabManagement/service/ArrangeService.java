@@ -35,6 +35,6 @@ public class ArrangeService {
      * 输出:实验对象(Arrange)
      */
     public static Arrange getArrangesById(String id){
-        return ArrangeDAO.findArrangeById(id);
+        return ArrangeDAO.findArrangeById(Integer.parseInt(id));
     }
 }

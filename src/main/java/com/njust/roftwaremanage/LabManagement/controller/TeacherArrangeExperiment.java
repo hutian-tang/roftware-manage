@@ -52,8 +52,9 @@ public class TeacherArrangeExperiment extends HttpServlet {
         String name_expadd = request.getParameter("name_expadd");
         String addressadd = request.getParameter("addressadd");
         String number_useadd = request.getParameter("number_useadd");
-        String isshared = request.getParameter("ishared");
+        String isshared = request.getParameter("isshared");
         String teacher_idadd = request.getParameter("teacher_id");
+        String typeadd = request.getParameter("type");
         PrintWriter out = response.getWriter();
         if(weeksearch!=null&&daysearch!=null){
             ArrangeDAO dao = new ArrangeDAO();
@@ -66,23 +67,26 @@ public class TeacherArrangeExperiment extends HttpServlet {
             boolean flag = true;
             List<Arrange> list = dao.findArrangeAllinoneday(weekadd,dayadd);
             for(int i = 0;i<list.size();i++){
-                out.println(list.get(i).getAddress());
-                if(list.get(i).getAddress()==addressadd){
-                    if(     (Integer.parseInt(starttimeadd) <= list.get(i).getStart()
-                                    && Integer.parseInt(starttimeadd) >= list.get(i).getEnd())
+                if(list.get(i).getAddress().equals(addressadd)){
+
+                    if(    ( (Integer.parseInt(starttimeadd) >= list.get(i).getStart()
+                                    && Integer.parseInt(starttimeadd) <= list.get(i).getEnd())
                             ||
-                            (Integer.parseInt(endtimeadd) <= list.get(i).getStart()
-                                    && Integer.parseInt(endtimeadd) >= list.get(i).getEnd())
+                            (Integer.parseInt(endtimeadd) >= list.get(i).getStart()
+                                    && Integer.parseInt(endtimeadd) <= list.get(i).getEnd())
+                            )
+                            &&
+                            !list.get(i).isShared()
                       ){
                         flag = false;
-                        out.println("<script language = 'javascript'> alert('await the administrator to check!');</script>");
+                        out.println("<script language = 'javascript'> alert('this period of time is occupied!');</script>");
                         break;
                     }
                 }
             }
             if(flag){
                     boolean share;
-                    if(isshared=="share"){
+                    if(isshared.equals("share")){
                          share = true;
                     }
                     else{
@@ -90,7 +94,7 @@ public class TeacherArrangeExperiment extends HttpServlet {
                     }
                     Arrange arrange = new Arrange(Integer.parseInt(weekadd),Integer.parseInt(dayadd),
                             Integer.parseInt(starttimeadd),Integer.parseInt(endtimeadd),name_expadd,addressadd,
-                            teacher_idadd,Integer.parseInt(number_useadd),share);
+                            teacher_idadd,Integer.parseInt(number_useadd),share,typeadd);
                     ArrangeDAO dao1 = new ArrangeDAO();
                     dao1.addArrange(arrange);
             }

@@ -50,7 +50,7 @@ public class    ArrangeDAO {
      * 输入:id
      * 输出:id对应的Arrange
      * */
-    public static Arrange findArrangeById(String arrange_id){
+    public static Arrange findArrangeById(int arrange_id){
         String resource = "mybatis-config.xml";
         SqlSession sqlSession = null;
         Arrange arrange = new Arrange();
@@ -191,18 +191,72 @@ public class    ArrangeDAO {
         }
         return arrangeList;
     }
-
-
-    public static void main(String args[]){
-        Arrange arrange = ArrangeDAO.findArrangeById("1");
-        System.out.println(arrange.getArrange_id());
-        List<Arrange> arrangeList = ArrangeDAO.findArrangeByName("测试实验");
-        for(Arrange a:arrangeList){
-            System.out.println(a.getArrange_id());
+    /**
+     * 访问数据库，获取所有实验信息
+     * 输出：List<String>
+     * */
+    public static List<Arrange> getArrangeAll(){
+        List<Arrange> arrangeList=new ArrayList<>();
+        String resource = "mybatis-config.xml";
+        SqlSession sqlSession = null;
+        try {
+            InputStream is = Resources.getResourceAsStream(resource);
+            SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
+            sqlSession = factory.openSession();
+            arrangeList=sqlSession.selectList("getArrangeAll");
+            sqlSession.commit();
         }
-        List<String> strings = ArrangeDAO.getArrangeNames();
-        for(String s:strings){
-            System.out.println(s);
+        catch (Exception e) {
+            e.printStackTrace();
+            sqlSession.rollback();
+        }
+        finally {
+            sqlSession.close();
+        }
+        return arrangeList;
+    }
+    /**
+     *
+     * 删除实验安排
+     **/
+    public  static  void deleteArrange( int id){
+        String resource = "mybatis-config.xml";
+        SqlSession sqlSession = null;
+        try {
+            InputStream is = Resources.getResourceAsStream(resource);
+            if(is == null){
+                System.out.println("空");
+            }
+            SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
+            sqlSession = factory.openSession();
+            sqlSession.insert("deletearrange",id);
+
+            sqlSession.commit();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            if (sqlSession != null) {
+                sqlSession.rollback();
+            }
+        }
+        finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
         }
     }
+
+//
+//    public static void main(String args[]){
+//        Arrange arrange = ArrangeDAO.findArrangeById("1");
+//        System.out.println(arrange.getArrange_id());
+//        List<Arrange> arrangeList = ArrangeDAO.findArrangeByName("测试实验");
+//        for(Arrange a:arrangeList){
+//            System.out.println(a.getArrange_id());
+//        }
+//        List<String> strings = ArrangeDAO.getArrangeNames();
+//        for(String s:strings){
+//            System.out.println(s);
+//        }
+//    }
 }

@@ -54,7 +54,7 @@ public class StudentService {
             for(Table t:tableList){
                 //查找对应的实验
                 String arrangeId = t.getArrange_id();
-                Arrange arrange = ArrangeDAO.findArrangeById(arrangeId);
+                Arrange arrange = ArrangeDAO.findArrangeById(Integer.parseInt(arrangeId));
                 if (arrange != null) {
                     names.put(arrange.getName_exp(),true);
                 }

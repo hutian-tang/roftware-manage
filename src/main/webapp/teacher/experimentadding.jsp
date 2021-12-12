@@ -93,6 +93,15 @@
 
         </div>
         <div class="form-group">
+            <label  class="control-label col-md-2 col-md-offset-2" style="color: whitesmoke">实验类型</label>
+            <div class="col-md-4">
+                <input type="radio" name="type" value ="type1" >开放性实验
+                <input type="radio" name="type" value="type2">普通实验
+
+            </div>
+
+        </div>
+        <div class="form-group">
             <label  class="control-label col-md-2 col-md-offset-2" style="color: whitesmoke">实验室id</label>
             <div class="col-md-4">
                 <input type="text" name="addressadd" class="email form-control" placeholder="请输入实验室id"/>
