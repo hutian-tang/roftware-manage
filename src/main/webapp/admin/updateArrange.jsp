@@ -1,12 +1,19 @@
+
 <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link href="../assets/style.css" rel="stylesheet">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String id = request.getParameter("id");
+    session.setAttribute("id",id);
+    String operatecode3 = "operatecode3";
+    session.setAttribute("operatecode3",operatecode3);
+%>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>添加实验安排</title>
+    <title>管理员修改实验安排</title>
     <style type="text/css">
         body{
 
@@ -31,7 +38,7 @@
 
 <div>
     <br><br><br>
-    <form action="${pageContext.request.contextPath}/TeacherArrangeExperiment" method="post" class="form-horizontal" role="form">
+    <form action="${pageContext.request.contextPath}/AdminOperateArrange" method="post" class="form-horizontal" role="form">
         <br><br><br>
         <h1 align="center" style="color: darkorange">请填写相关信息</h1>
         <br><br><br><br><br><br>
@@ -130,3 +137,4 @@
 
 </body>
 </html>
+

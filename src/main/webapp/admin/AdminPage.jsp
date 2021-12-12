@@ -118,8 +118,9 @@
                 <td  width="9%"><h4>${list1.getType()}</h4></td>
                 <td  width="9%"><h4>${list1.getWeek()}</h4></td>
                 <td  width="9%"><h4>${list1.getDay()}</h4></td>
-                <td  width="9%"><a class="btn btn-default col-md-0"href="${pageContext.request.contextPath}/AdminOperateArrange?id=${list1.getArrange_id()}&operatecode2=1 ">删除</a>
-                    <a class="btn btn-default col-md-0"href="${pageContext.request.contextPath}/AdminOperateArrange?id=${list1.getArrange_id()}">编辑</a>
+                <td  width="9%">
+                    <a class="btn btn-default col-md-0"href="${pageContext.request.contextPath}/AdminOperateArrange?id=${list1.getArrange_id()}&operatecode2=1 ">删除</a>
+                    <a class="btn btn-default col-md-0"href="admin/updateArrange.jsp?id=${list1.getArrange_id()}">修改</a>
                 </td>
 
             </tr>

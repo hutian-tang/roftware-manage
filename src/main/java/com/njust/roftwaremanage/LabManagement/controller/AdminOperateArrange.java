@@ -12,16 +12,27 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-
+import com.njust.roftwaremanage.LabManagement.controller.TeacherArrangeExperiment;
 @WebServlet(name = "AdminOperateArrange" , urlPatterns = "/AdminOperateArrange")
 public class AdminOperateArrange extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         String arrange_id = request.getParameter("arrange_id");
         String operatecode1 = null;
+        Object operatecode3 = null;
         if(arrange_id!=null) {
             operatecode1 = "1";//查
         }
         String operatecode2 = request.getParameter("operatecode2");//删
+        if(request.getSession().getAttribute("operatecode3")!=null){
+        operatecode3 =request.getSession().getAttribute("operatecode3");
+        request.getSession().removeAttribute("operatecode3");
+        }
+//        if(operatecode3!=null) {
+//            operatecode3 = request.getSession().getAttribute("operatecode3").toString();//改
+//        }
+//        Operatecode1：增加实验安排
         if(operatecode1!=null){
             //System.out.println(arrange_id);
             ArrangeDAO dao = new ArrangeDAO();
@@ -33,22 +44,47 @@ public class AdminOperateArrange extends HttpServlet {
 
 
         }
+//        operatecode2：删除实验安排
         else if(operatecode2!=null){
             request.setCharacterEncoding("utf-8");
             response.setCharacterEncoding("utf-8");
-           // PrintWriter pw=response.getWriter();
-//        String cName = request.getParameter("cName");
-//        System.out.println("name is ");
-//        System.out.println(cName);
-//        new WikiController().deleteCharacter(request.getParameter(cName));
             int i = Integer.parseInt(request.getParameter("id"));
-//            System.out.println(i);
             new ArrangeDAO().deleteArrange(i);
             response.sendRedirect("AdminOperateArrange");
         //    pw.flush();
           //  pw.close();
 
-        }else{
+        }
+//      operatecode3：修改实验安排
+        else if(operatecode3!=null){
+            request.setCharacterEncoding("utf-8");
+            response.setCharacterEncoding("utf-8");
+            String id = request.getSession().getAttribute("id").toString();
+            String weekadd = request.getParameter("weekadd");
+            String dayadd = request.getParameter("dayadd");
+            String starttimeadd = request.getParameter("starttimeadd");
+            String endtimeadd = request.getParameter("endtimeadd");
+            String name_expadd = request.getParameter("name_expadd");
+            String addressadd = request.getParameter("addressadd");
+            String number_useadd = request.getParameter("number_useadd");
+            String isshared = request.getParameter("isshared");
+            String teacher_idadd = request.getParameter("teacher_id");
+            String typeadd = request.getParameter("type");
+            boolean share;
+            if(isshared.equals("share")){
+                share = true;
+            }
+            else{
+                share = false;
+            }
+            Arrange arrange = new Arrange(Integer.parseInt(weekadd),Integer.parseInt(dayadd),
+                    Integer.parseInt(starttimeadd),Integer.parseInt(endtimeadd),name_expadd,addressadd,
+                    teacher_idadd,Integer.parseInt(number_useadd),share,typeadd);
+            ArrangeDAO dao1 = new ArrangeDAO();
+            dao1.updateArrange(arrange,id);
+            response.sendRedirect("AdminOperateArrange");
+        }
+        else{
             ArrangeDAO dao = new ArrangeDAO();
             List<Arrange> list1 = dao.getArrangeAll();
             request.setAttribute("list1", list1);

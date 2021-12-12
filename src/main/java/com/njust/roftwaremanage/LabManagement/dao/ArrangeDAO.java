@@ -246,6 +246,40 @@ public class    ArrangeDAO {
         }
     }
 
+    /**
+     *
+     * 修改实验安排
+     **/
+    public  static  void updateArrange(Arrange arrange,String arrange_id){
+        String resource = "mybatis-config.xml";
+        Map<String,Object> parameters=new java.util.HashMap<>();
+        parameters.put("arrange",arrange);
+        parameters.put("Arrange_id",Integer.parseInt(arrange_id));
+        SqlSession sqlSession = null;
+        try {
+            InputStream is = Resources.getResourceAsStream(resource);
+            if(is == null){
+                System.out.println("空");
+            }
+            SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
+            sqlSession = factory.openSession();
+            sqlSession.insert("updateArrange",parameters);
+
+            sqlSession.commit();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            if (sqlSession != null) {
+                sqlSession.rollback();
+            }
+        }
+        finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+    }
+
 //
 //    public static void main(String args[]){
 //        Arrange arrange = ArrangeDAO.findArrangeById("1");
