@@ -1,8 +1,12 @@
 package com.njust.roftwaremanage.LabManagement.service;
 
+import com.njust.roftwaremanage.LabManagement.dao.ArrangeDAO;
 import com.njust.roftwaremanage.LabManagement.dao.TableDAO;
+import com.njust.roftwaremanage.LabManagement.entity.Arrange;
 import com.njust.roftwaremanage.LabManagement.entity.Classroom;
 import com.njust.roftwaremanage.LabManagement.entity.Table;
+
+import java.util.List;
 
 public class TableService {
 
@@ -10,6 +14,8 @@ public class TableService {
      *  输入:StudentId(String),arrangeId(String),教室名classroom(String),当前已选人数(int)
      *  输出:Table
      * */
+    //FIXME:已知bug
+    //FIXME:当教室中存在开放性实验和普通实验时，座位分配将出现问题
     public Table assignSeats(String studentId, String arrangeId, Classroom classroom, int selectedNumber){
         //由于系统为顺序分配，为了提供效率，可以从当前已选人数开始分配位置
         int num = selectedNumber + 1;
@@ -30,6 +36,8 @@ public class TableService {
      *  输入:起始位置(int),结束位置(int),教室对象(Classroom),arrangeId(String)
      *  返回:int(应该给学生分配的位置)
      * */
+    //FIXME:已知bug
+    //FIXME:当教室中存在开放性实验和普通实验时，座位分配将出现问题
     public int assignSeats(int pos, int end, Classroom classroom, String arrangeId){
         boolean flag = false;       //是否成功分配座位
         while(!flag && pos <= end){      //避免超出范围
@@ -47,5 +55,35 @@ public class TableService {
             pos++;
         }
         return -1;
+    }
+
+    /** 根据学生id找到学生的实验安排
+     *  输入:studentId(String)
+     *  返回:List<Table>
+     * */
+    public static List<Table> findTableByStudentId(String studentId){
+        return TableDAO.findTableByStudentId(studentId);
+    }
+
+    /**
+     * 根据学生id和实验id找到座位
+     * 输入:studentId,arrangeId
+     * 输出:Table对象
+     * */
+    public static Table findTableByStudentIdAndArrangeId(String studentId,String arrangeId){
+        return TableDAO.findTableByStudentIdAndArrangeId(studentId, arrangeId);
+    }
+
+    /**
+     * 删除座位信息
+     * 输入:Table
+     * */
+    public static void cancelTable(Table table){
+        TableDAO.dropTable(table.getTable_id(), table.getArrange_id());
+        //同时更改对应的arrange中的已选人数信息
+        Arrange arrange = ArrangeService.getArrangesById(table.getArrange_id());
+        arrange.setNumber_selected(arrange.getNumber_selected() - 1);
+        //更新arrange
+        ArrangeDAO.updateArrange(arrange);
     }
 }

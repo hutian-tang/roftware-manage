@@ -11,9 +11,9 @@
             <!-- 数据库连接相关配置 ,这里动态获取config.properties文件中的内容-->
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver" />
-                <property name="url" value="jdbc:mysql://localhost:3306/takingorderssystem" />
-                <property name="username" value="root" />
-                <property name="password" value="root" />
+                <property name="url" value="jdbc:mysql://localhost:3306/experimentalsystem" />
+                <property name="username" value="takingorderssystem" />
+                <property name="password" value="ckKg(ZrvjMqk[[5x" />
             </dataSource>
         </environment>
     </environments>
@@ -24,6 +24,8 @@
         <mapper resource="mapper/ManagerMapper.xml"/>
         <mapper resource="mapper/StudentMapper.xml"/>
         <mapper resource="mapper/TeacherMapper.xml"/>
+        <mapper resource="mapper/ClassroomMapper.xml"/>
+        <mapper resource="mapper/TableMapper.xml"/>
     </mappers>
 
 </configuration>

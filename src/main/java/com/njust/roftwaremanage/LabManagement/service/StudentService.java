@@ -16,6 +16,15 @@ public class StudentService {
     private final static StudentDAO studentDAO = new StudentDAO();
 
     /**
+     * 修改密码
+     * 输入:student,新密码password(String)
+     * */
+    public static void changePassword(Student student,String password){
+        student.setPassword(password);
+        StudentDAO.updateStudent(student);
+    }
+
+    /**
      * 用户登录
      * 输入：id,password
      * 输出: 成功：Student对象
@@ -44,9 +53,12 @@ public class StudentService {
         List<String> arrangeNames = ArrangeService.getArrangeNames();
         //初始化HashMap
         if (arrangeNames != null) {
+            System.out.println("实验列表大小:"+ arrangeNames.size());
             for(String s: arrangeNames){
                 names.put(s,false);
             }
+        }else{
+            System.out.println("获取列表为空");
         }
         //遍历选课信息，查看学生选了哪些实验
         List<Table> tableList = TableDAO.findTableByStudentId(id);
@@ -56,6 +68,7 @@ public class StudentService {
                 String arrangeId = t.getArrange_id();
                 Arrange arrange = ArrangeDAO.findArrangeById(Integer.parseInt(arrangeId));
                 if (arrange != null) {
+                    System.out.println("实验名：" + arrange.getName_exp());
                     names.put(arrange.getName_exp(),true);
                 }
             }
@@ -129,6 +142,8 @@ public class StudentService {
      *          mag属性：存储了code对应的具体错误信息
      *          data属性：Table(选课错误时为null)
      * */
+    //FIXME:已知bug
+    //FIXME:当教室中存在开放性实验和普通实验时，座位分配将出现问题
     //FIXME:未经测试
      public Message selectExperiment(String studentId,String arrangeId){
          Message message = new Message();
@@ -143,7 +158,6 @@ public class StudentService {
              return message;
          }
          //选择实验
-         arrange.setNumber_selected(arrange.getNumber_selected() + 1);  //选课人数+1
          //分配座位
          TableService tableService = new TableService();
          Classroom classroom = ClassroomService.findByAddress(arrange.getAddress());
@@ -152,7 +166,11 @@ public class StudentService {
              //理论上不应该存在的错误
              message.setCode(-3);
              message.setMsg("未知错误，请联系系统维护人员");
+             return message;
          }
+         TableDAO.InsertTable(table);
+         arrange.setNumber_selected(arrange.getNumber_selected() + 1);  //选课人数+1
+         ArrangeDAO.updateArrange(arrange);
          message.setCode(0);
          message.setMsg("成功");
          message.setData(table);
