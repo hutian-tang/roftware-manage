@@ -4,15 +4,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.njust.roftwaremanage.LabManagement.dao.ArrangeMapper">
     <!-- 添加Emp数据,parameterType -->
-   
-<select id="searcharrange" parameterType="String" resultType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
+    <select id="searcharrange" parameterType="String" resultType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
         select * from arrange where arrange_id=#{arrange_id}
     </select>
     <select id="findarrangebyname" parameterType="String" resultType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
         select * from arrange where name_exp=#{name_exp}
-    </select>
-<select id="getexpname" resultType="String">
-        select distinct name_exp from arrange 
     </select>
     <select id="findarrangebytime" parameterType="int" resultType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
         select * from arrange where startime=#{startime} and endtime=#{endtime}
@@ -20,11 +16,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="findarrangeAllinoneday" parameterType="int" resultType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
         select * from arrange where week=#{week} and day=#{day}
     </select>
+    <select id="getexpname" resultType="String">
+        select distinct name_exp from arrange 
+    </select>
     <insert id="addarrange" parameterType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
-        insert into arrange(start,end,name_exp,address,teacher_id,number_use,number_selected,isShared,week,day)
-        values (#{start},#{end},#{name_exp},#{address},#{teacher_id},
-                #{number_use},#{number_selected},#{isShared},#{week},#{day})
+        insert into arrange(arrange_id,start,end,name_exp,address,teacher_id,number_use,isShared,week,day,type)
+        values (#{arrange_id},#{start},#{end},#{name_exp},#{address},#{teacher_id},
+                #{number_use},#{isShared},#{week},#{day},#{type})
     </insert>
+    <delete id="deletearrange" parameterType="int">
+        delete from arrange where arrange_id = #{id}
+    </delete>
+    <select id="getArrangeAll" resultType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
+        select * from arrange
+    </select>
+    <update id="updateArrange2" parameterType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
+        update arrange set
+        arrange_id = #{arrange.arrange_id},
+        start = #{arrange.start},
+        end = #{arrange.end},
+        name_exp = #{arrange.name_exp},
+        address = #{arrange.address},
+        teacher_id = #{arrange.teacher_id},
+        number_use = #{arrange.number_use},
+        isShared = #{arrange.isShared},
+        week = #{arrange.week},
+        day = #{arrange.day},
+        type = #{arrange.type}
+        where arrange_id = #{Arrange_id}
+    </update>
     <update id="updateArrange" parameterType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
         UPDATE arrange SET week=#{week},day=#{day},start=#{start},end=#{end},name_exp=#{name_exp},address=#{address},teacher_id=#{teacher_id},isShared=#{isShared},number_use=#{number_use},number_selected=#{number_selected} WHERE arrange_id=#{arrange_id}
     </update>

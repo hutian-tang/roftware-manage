@@ -70,4 +70,12 @@
         <servlet-name>StudentReceiveMag</servlet-name>
         <url-pattern>/studentMag</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>TeacherArrangeExperiment</servlet-name>
+        <servlet-class>com.njust.roftwaremanage.LabManagement.controller.TeacherArrangeExperiment</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TeacherArrangeExperiment</servlet-name>
+        <url-pattern>/TeacherArrangeExperiment</url-pattern>
+    </servlet-mapping>
 </web-app>
