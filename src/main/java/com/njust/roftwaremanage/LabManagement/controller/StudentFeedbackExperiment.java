@@ -7,9 +7,12 @@ import com.njust.roftwaremanage.LabManagement.entity.Table;
 import com.njust.roftwaremanage.LabManagement.service.MachineService;
 import com.njust.roftwaremanage.LabManagement.tools.Message;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * 处理学生对实验的反馈
@@ -18,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class StudentFeedbackExperiment extends HttpServlet {
     /**
      * 处理学生对机器的报修功能
-     * 输入:座位号tableId(int),房间号address(String)
+     * 输入:座位号tableId(int),房间号address(String),学生学号(String)
      * 输出:Message对象
      *      code属性:0-成功,-1-失败
      *      mag属性:对应的code内容
@@ -27,6 +30,7 @@ public class StudentFeedbackExperiment extends HttpServlet {
         //获取参数
         String tableId = request.getParameter("tableId");
         String address = request.getParameter("address");
+        String studentId = request.getParameter("studentId");
         Machine machine = MachineService.findMachineByAddressAndId(tableId,address);
         MachineService machineService = new MachineService();
         Boolean flag = machineService.machineFeedBack(machine);
@@ -39,6 +43,12 @@ public class StudentFeedbackExperiment extends HttpServlet {
             message.setCode(-1);
             message.setMsg("报修失败！机器已经损坏！请联系管理员修复！");
         }
-        request.setAttribute("message",message);
+        HttpSession session = request.getSession();
+        session.setAttribute("feedbackMessage",message);
+        try {
+            response.sendRedirect("showExp.jsp?studentId="+studentId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

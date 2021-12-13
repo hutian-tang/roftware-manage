@@ -19,6 +19,7 @@
     Table table = new Table();
     Teacher teacher = new Teacher();
     String studentId;
+    Message feedback;
 %>
 
 <html>
@@ -32,6 +33,18 @@
 %>
 <h1><%=studentId%>的待上课实验</h1>
 <a href="home.jsp?studentId=<%=studentId%>">返回主页</a>
+<%
+    feedback = (Message) session.getAttribute("feedbackMessage");
+    if(feedback != null){
+%>
+    <h2>不会写JS，假装我是提示框。</h2>
+    <h2>提示信息：<%=feedback.getMsg()%></h2>
+<%
+    //避免重复提示
+    session.setAttribute("feedbackMessage",null);
+    }
+
+%>
 <table>
     <tr>
         <td>实验名称</td>
@@ -42,6 +55,7 @@
         <td>星期</td>
         <td>开始节次</td>
         <td>结束节次</td>
+        <td>机器报修</td>
     </tr>
     <%
         List<Message> messageList = (List<Message>) request.getAttribute("message");
@@ -60,6 +74,12 @@
         <td><%=arrange.getDay()%></td>
         <td><%=arrange.getStart()%></td>
         <td><%=arrange.getEnd()%></td>
+        <form action="feedback" method="post">
+            <input type="hidden" id="tableId" name="tableId" value="<%=table.getTable_id()%>">
+            <input type="hidden" id="address" name="address" value="<%=arrange.getAddress()%>">
+            <input type="hidden" id="studentId" name="studentId" value="<%=studentId%>">
+            <td><input type="submit" value="报修"></td>
+        </form>
     </tr>
     <%
 
