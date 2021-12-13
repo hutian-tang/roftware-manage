@@ -20,6 +20,7 @@
     Teacher teacher = new Teacher();
     String studentId;
     Message feedback;
+    Message select;
 %>
 
 <html>
@@ -37,13 +38,23 @@
     feedback = (Message) session.getAttribute("feedbackMessage");
     if(feedback != null){
 %>
-    <h2>不会写JS，假装我是提示框。</h2>
+    <h2>不会写JS，假装我是报修提示框。</h2>
     <h2>提示信息：<%=feedback.getMsg()%></h2>
 <%
     //避免重复提示
     session.setAttribute("feedbackMessage",null);
     }
-
+%>
+<%
+    select = (Message) session.getAttribute("selectMessage");
+    if(select != null){
+%>
+<h2>不会写JS，假装我是选课提示框。</h2>
+<h2>提示信息：<%=select.getMsg()%></h2>
+<%
+        //避免重复提示
+        session.setAttribute("selectMessage",null);
+    }
 %>
 <table>
     <tr>

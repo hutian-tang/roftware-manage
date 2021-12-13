@@ -33,7 +33,7 @@ public class StudentSelectExperiment extends HttpServlet {
         StudentService studentService = new StudentService();
         Message message = studentService.selectExperiment(studentId,arrangeId);
         HttpSession session = request.getSession();
-        session.setAttribute("message2",message);
+        session.setAttribute("selectMessage",message);
         //TODO:前后端相连时注意更改此处
         try {
             response.sendRedirect("showExp.jsp?studentId="+studentId);
