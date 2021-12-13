@@ -26,6 +26,7 @@
         <mapper resource="mapper/TeacherMapper.xml"/>
         <mapper resource="mapper/ClassroomMapper.xml"/>
         <mapper resource="mapper/TableMapper.xml"/>
+        <mapper resource="mapper/MagMapper.xml"/>
     </mappers>
 
 </configuration>
