@@ -78,4 +78,12 @@
         <servlet-name>TeacherArrangeExperiment</servlet-name>
         <url-pattern>/TeacherArrangeExperiment</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AdminFeedbackMachine</servlet-name>
+        <servlet-class>com.njust.roftwaremanage.LabManagement.controller.AdminFeedbackMachine</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminFeedbackMachine</servlet-name>
+        <url-pattern>/AdminTest/machine</url-pattern>
+    </servlet-mapping>
 </web-app>
