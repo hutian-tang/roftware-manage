@@ -7,6 +7,8 @@ import com.njust.roftwaremanage.LabManagement.tools.Message;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -46,6 +48,14 @@ public class AdminFeedbackMachine extends HttpServlet {
             message.setCode(-1);
             message.setMsg("更新状态失败！该机器可能已经修复");
         }
-        request.setAttribute("message",message);
+        HttpSession session = request.getSession();
+        session.setAttribute("message",message);
+        //TODO:前后端连接时更改此处
+        String adminId = request.getParameter("adminId");
+        try {
+            response.sendRedirect("adminFeedback.jsp?adminId="+adminId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
