@@ -249,7 +249,7 @@ public class ArrangeDAO {
         return arrangeList;
     }
 
-        /**
+    /**
      *
      * 删除实验安排
      **/
@@ -278,6 +278,33 @@ public class ArrangeDAO {
                 sqlSession.close();
             }
         }
+    }
+    /**
+     * 根据teacher_id返回对应的实验
+     * 输入:teacher_id
+     * 输出:id对应的Arrange
+     */
+    public static List<Arrange> findArrangeByteacherId(String teacher_id) {
+        List<Arrange> arrangeList = new ArrayList<>();
+        String resource = "mybatis-config.xml";
+        SqlSession sqlSession = null;
+        try {
+            InputStream is = Resources.getResourceAsStream(resource);
+            SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
+            sqlSession = factory.openSession();
+            arrangeList = sqlSession.selectList("searcharrangebyteacherid", teacher_id);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (sqlSession != null) {
+                sqlSession.rollback();
+            }
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+        return arrangeList;
     }
 
 }

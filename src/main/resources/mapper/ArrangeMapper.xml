@@ -48,4 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateArrange" parameterType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
         UPDATE arrange SET week=#{week},day=#{day},start=#{start},end=#{end},name_exp=#{name_exp},address=#{address},teacher_id=#{teacher_id},isShared=#{isShared},number_use=#{number_use},number_selected=#{number_selected} WHERE arrange_id=#{arrange_id}
     </update>
+    <select id="searcharrangebyteacherid" parameterType="String" resultType="com.njust.roftwaremanage.LabManagement.entity.Arrange">
+        select * from arrange where teacher_id=#{teacher_id}
+    </select>
 </mapper>
