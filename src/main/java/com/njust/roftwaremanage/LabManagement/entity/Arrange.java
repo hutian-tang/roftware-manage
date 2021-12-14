@@ -61,6 +61,17 @@ public class Arrange {
         this.isShared = isShared;
         this.type = type;
     }
+        this.week = week;
+        this.day = day;
+        this.start = start;
+        this.end = end;
+        this.name_exp = name_exp;
+        this.address = address;
+        this.teacher_id = teacher_id;
+        this.number_use = number_use;
+        this.isShared = isShared;
+        this.type = type;
+    }
 
     public String getArrange_id() {
         return arrange_id;
