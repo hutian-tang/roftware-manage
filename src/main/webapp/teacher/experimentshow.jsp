@@ -86,6 +86,10 @@
 
 
 </div>
+    <div>
+        <a class="btn btn-default col-md-0"href="${pageContext.request.contextPath}/teacher/experimentadding.jsp">添加</a>
+
+    </div>
 
 <br >
 <br >
@@ -98,23 +102,28 @@
     <td><h3>starttime</h3></td>
     <td><h3>endtime</h3></td>
     <td><h3>type</h3></td>
+    <td><h3>isShared</h3></td>
     <td><h3>number</h3></td>
+    <td><h3>teacher_id</h3></td>
 
 </tr>
 <c:forEach items="${list1}" var="list1">
     <tr>
-        <td  width="22%"><h4>${list1.getArrange_id()}</h4></td>
+        <td  width="13%"><h4>${list1.getArrange_id()}</h4></td>
         <td  width="13%"><h4>${list1.getWeek()}</h4></td>
         <td  width="13%"><h4>${list1.getDay()}</h4></td>
         <td  width="13%"><h4>${list1.getStart()}</h4></td>
         <td  width="13%"><h4>${list1.getEnd()}</h4></td>
         <td  width="13%"><h4>${list1.getType()}</h4></td>
+        <td  width="13%"><h4>${list1.isShared()}</h4></td>
         <td  width="13%"><h4>${list1.getNumber_use()}</h4></td>
-
+        <td  width="13%"><h4>${list1.getTeacher_id()}</h4></td>
         </tr>
         </c:forEach>
         </table>
+
         </div>
+
         </body>
         </html>
 
