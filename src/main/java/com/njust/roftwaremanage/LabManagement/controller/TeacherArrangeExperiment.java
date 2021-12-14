@@ -18,7 +18,6 @@ import java.io.PrintWriter;
  * 教师安排实验的servlet
  * 响应路径:待定
  * */
-
 public class TeacherArrangeExperiment extends HttpServlet {
     /**
      * 教师在安排实验前应当先查询该时间段是否存在可以选择的实验室
@@ -81,7 +80,6 @@ public class TeacherArrangeExperiment extends HttpServlet {
                       ){
                         flag = false;
                         out.println("<script language = 'javascript'> alert('this period of time is occupied!');</script>");
-                        
                         break;
                     }
                 }
