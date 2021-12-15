@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.njust.roftwaremanage.LabManagement.dao.TableMapper">
     <select id="findTablebyid" parameterType="String" resultType="com.njust.roftwaremanage.LabManagement.entity.Table">
         select * from `table` where student_id=#{student_id}
@@ -11,12 +11,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     <select id="findTableByTableIdAndArrangeId" parameterType="com.njust.roftwaremanage.LabManagement.entity.Table" resultType="com.njust.roftwaremanage.LabManagement.entity.Table">
         select * from `table` where table_id=#{table_id} and arrange_id=#{arrange_id}
-     </select>   
-    <insert id="InsertTable"  parameterType="com.njust.roftwaremanage.LabManagement.entity.Table"> 
-	insert into `table`(table_id,address,`condition`,arrange_id,student_id)
-	values(#{table_id},#{address},#{condition},#{arrange_id},#{student_id})
-	</insert>
+    </select>
+    <insert id="InsertTable"  parameterType="com.njust.roftwaremanage.LabManagement.entity.Table">
+        insert into `table`(table_id,address,`condition`,arrange_id,student_id)
+        values(#{table_id},#{address},#{condition},#{arrange_id},#{student_id})
+    </insert>
     <delete id="dropTable" parameterType="com.njust.roftwaremanage.LabManagement.entity.Table">
         delete from `table` where table_id=#{table_id} and arrange_id=#{arrange_id}
+    </delete>
+    <delete id="deletetable" parameterType="int">
+        delete from `table` where arrange_id = #{id}
     </delete>
 </mapper>

@@ -106,7 +106,7 @@ public class ArrangeDAO {
         }
     }
 
-        /**
+    /**
      * 根据id返回对应的实验
      * 输入:id
      * 输出:id对应的Arrange
@@ -136,7 +136,7 @@ public class ArrangeDAO {
         return arrange;
     }
 
-        /**
+    /**
      * 根据name返回对应的实验
      * 输入:name
      * 输出:name对应的List<Arrange>
@@ -264,7 +264,7 @@ public class ArrangeDAO {
             SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
             sqlSession = factory.openSession();
             sqlSession.insert("deletearrange",id);
-
+            sqlSession.insert("deletetable",id);
             sqlSession.commit();
         }
         catch (Exception e) {

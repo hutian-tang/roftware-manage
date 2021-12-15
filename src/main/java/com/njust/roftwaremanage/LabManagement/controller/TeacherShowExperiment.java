@@ -35,9 +35,9 @@ public class TeacherShowExperiment extends HttpServlet {
      *          data2属性:Table(对应学生的座位号)
      * */
     public void doPost(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException{
-        request.getSession().setAttribute("teacher_id",1);
+        //request.getSession().setAttribute("teacher_id",1);
         String teacher_id = request.getSession().getAttribute("teacher_id").toString();
-        request.getSession().removeAttribute("teacher_id");
+        //request.getSession().removeAttribute("teacher_id");
         ArrangeDAO dao = new ArrangeDAO();
         List<Arrange> list1 = dao.findArrangeByteacherId(teacher_id);
         request.setAttribute("list1", list1);

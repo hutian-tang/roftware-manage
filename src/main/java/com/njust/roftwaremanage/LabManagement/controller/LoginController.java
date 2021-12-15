@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
@@ -46,6 +47,7 @@ public class LoginController extends HttpServlet {
         String role = request.getParameter("role"); //角色（学生、管理员、教师）
 
         Message message = new Message(1, "ok");
+        HttpSession session = request.getSession();
         //处理
         Map<String, Object> claims = new HashMap<String, Object>();
         if (role.equals("student")) {//学生账号
@@ -76,6 +78,7 @@ public class LoginController extends HttpServlet {
             claims.put("token", s);
             claims.remove("exp");
             message.setData(claims);
+            session.setAttribute("teacher_id",id);
             //TODO:跳转到教师页面
         } else if (role.equals("manager")) {//管理员账号
             Manager manager = ManagerService.login(id, password);
